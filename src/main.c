@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dchernik <dchernik@student.42urduliz.      +#+  +:+       +#+        */
+/*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/18 17:27:14 by dchernik          #+#    #+#             */
-/*   Updated: 2026/04/18 17:27:22 by dchernik         ###   ########.fr       */
+/*   Created: 2026/04/18 18:59:46 by dchernik          #+#    #+#             */
+/*   Updated: 2026/04/18 18:59:51 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
