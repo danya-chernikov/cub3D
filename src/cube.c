@@ -1,30 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   cube.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/18 18:59:46 by dchernik          #+#    #+#             */
-/*   Updated: 2026/04/21 14:33:40 by dchernik         ###   ########.fr       */
+/*   Created: 2026/04/21 15:19:23 by dchernik          #+#    #+#             */
+/*   Updated: 2026/04/21 15:19:26 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "cube.h"
 
-#include <stdlib.h> /* for free() */
+#include <stdio.h>
 
-int main(void)
+/* Does nothing. Just a stub */
+void	stub_func(void)
 {
-	t_cube	*cube;
-
-	cube = ft_calloc(1, sizeof *cube);
-	
-	// Map and/or player initialization
-	// ...
-	// Rendering...
-	
-	free(cube);
-	return (EXIT_SUCCESS);
+	printf("...");
 }
+
+/* Other functions... */
