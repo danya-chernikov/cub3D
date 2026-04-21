@@ -23,8 +23,9 @@ MLX_A=$(MLX_BUILD_DIR)/libmlx42.a
 SRC_PATH=src/
 OBJ_PATH=obj/
 
-SRCS=main.c
-OBJS=$(OBJ_PATH)/main.o
+# We use 'addprefix' here just to avoid unnecessary repetition of file names
+SRCS=main.c cube.c error.c
+OBJS=$(addprefix $(OBJ_PATH)/, $(SRCS:.c=.o))
 
 # C compiler options
 CFLAGS=-Wall -Werror -Wextra -O0 -g3
@@ -47,6 +48,7 @@ $(NAME): $(OBJS) $(LIBFT_A) $(VECTOR_A) $(MLX_A)
 	$(CC) $(CFLAGS) $(OBJS) $(LIBFT_A) $(VECTOR_A) $(MLX_A) \
 	$(LIBFLAGS) -o $(NAME)
 
+# Here we build libraries
 $(LIBFT_A):
 	$(MAKE) -C $(LIBFT_PATH)
 
@@ -63,6 +65,17 @@ $(OBJ_PATH)/main.o: $(SRC_PATH)/main.c $(LIBFT_PATH)/libft.h \
 	mkdir -p $(OBJ_PATH)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $(SRC_PATH)/main.c -o $(OBJ_PATH)/main.o
 
+$(OBJ_PATH)/cube.o: $(SRC_PATH)/cube.c $(LIBFT_PATH)/libft.h \
+	$(VECTOR_PATH)/vector.h $(MLX_DIR)/include/MLX42/MLX42.h
+	mkdir -p $(OBJ_PATH)
+	$(CC) $(CFLAGS) $(INCLUDES) -c $(SRC_PATH)/cube.c -o $(OBJ_PATH)/cube.o
+
+$(OBJ_PATH)/error.o: $(SRC_PATH)/error.c $(LIBFT_PATH)/libft.h \
+	$(VECTOR_PATH)/vector.h $(MLX_DIR)/include/MLX42/MLX42.h
+	mkdir -p $(OBJ_PATH)
+	$(CC) $(CFLAGS) $(INCLUDES) -c $(SRC_PATH)/error.c -o $(OBJ_PATH)/error.o
+
+# Other rules we obliged to have
 clean:
 	rm -rf $(OBJS)
 	$(MAKE) -C $(LIBFT_PATH) clean

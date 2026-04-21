@@ -1,30 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   mlx_draw_win.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/18 18:59:46 by dchernik          #+#    #+#             */
-/*   Updated: 2026/04/21 14:33:40 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/04/21 15:16:10 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "cube.h"
-
-#include <stdlib.h> /* for free() */
+#include "MLX42/MLX42.h"
+#include <stdlib.h>
 
 int main(void)
 {
-	t_cube	*cube;
+	mlx_t	*mlx;
 
-	cube = ft_calloc(1, sizeof *cube);
-	
-	// Map and/or player initialization
-	// ...
-	// Rendering...
-	
-	free(cube);
+	mlx = mlx_init(800, 600, "cub3D", true);
+	if (!mlx)
+		return (EXIT_FAILURE);
+	mlx_loop(mlx);
+	mlx_terminate(mlx);
 	return (EXIT_SUCCESS);
 }
