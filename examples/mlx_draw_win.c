@@ -6,11 +6,11 @@
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/21 18:57:59 by dchernik          #+#    #+#             */
-/*   Updated: 2026/04/21 18:58:00 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/05/06 18:20:47 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "MLX42/MLX42.h"
+#include "MLX42.h"
 #include <stdlib.h>
 
 int main(void)

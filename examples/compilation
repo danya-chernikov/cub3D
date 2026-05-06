@@ -1,1 +1,4 @@
+cd mlx42/
+cmake -B build -DDEBUG=1
+cmake --build build/ -j$(nproc --all)
 gcc prog.c ../mlx42/build/libmlx42.a -O0 -g3 -ldl -lglfw -pthread -lm -lGL -o prog
