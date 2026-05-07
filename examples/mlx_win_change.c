@@ -23,11 +23,14 @@ static void	ft_hook(void *param)
 
 int	main(void)
 {
+	mlx_t		*mlx;
+	mlx_image_t	*img;
+
 	// MLX allows you to define its core behaviour before startup
 	// Tells mlx42 to start the window maximized
 	mlx_set_setting(MLX_MAXIMIZED, true);
 	// Initialize MLX42 and create the main window handle
-	mlx_t	*mlx = mlx_init(WIN_WIDTH, WIN_HEIGHT, "42Balls", true);
+	mlx = mlx_init(WIN_WIDTH, WIN_HEIGHT, "Change Window Size", true);
 	// The fourth parameter 'true' means we request resizing/high-DPI behaviour
 	if (!mlx)
 		ft_error();
@@ -35,7 +38,7 @@ int	main(void)
 	// Do stuff
 
 	// This creates 256x256 image buffer
-	mlx_image_t	*img = mlx_new_image(mlx, WIN_WIDTH, WIN_HEIGHT);
+	img = mlx_new_image(mlx, WIN_WIDTH, WIN_HEIGHT);
 	// This displays that image in the window at position (0, 0)
 	if (!img || (mlx_image_to_window(mlx, img, 0, 0) < 0))
 		ft_error();
