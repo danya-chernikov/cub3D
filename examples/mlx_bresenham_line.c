@@ -6,7 +6,7 @@
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/09 20:48:43 by dchernik          #+#    #+#             */
-/*   Updated: 2026/05/09 20:49:35 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/05/14 12:54:06 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	bresenham_update_error(t_coord *p0, int *err, int deltas[], int steps[])
  *     deltas[1] - dy;
  *     steps[0]  - sx;
  *     steps[1]  - sy. */
-static void	draw_line(mlx_image_t *img, t_coord *p0, t_coord *p1, uint32_t color)
+void	draw_line(mlx_image_t *img, t_coord *p0, t_coord *p1, uint32_t color)
 {
 	int	deltas[2];
 	int	steps[2];
