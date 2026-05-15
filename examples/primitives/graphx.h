@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   graphx.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/05/15 19:11:49 by dchernik          #+#    #+#             */
+/*   Updated: 2026/05/15 19:31:55 by dchernik         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef GRAPHX_H
 #define GRAPHX_H
 
@@ -47,6 +59,7 @@ void	ft_error(void);
 
 /* graphx_line.c */
 void	draw_line(mlx_image_t *img, t_coord p0, t_coord p1, uint32_t color);
+void	draw_line_thick(mlx_image_t *img, t_line *line);
 
 
 /* graphx_polygon.c */
