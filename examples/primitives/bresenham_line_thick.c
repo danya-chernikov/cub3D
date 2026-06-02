@@ -6,7 +6,7 @@
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/09 20:48:43 by dchernik          #+#    #+#             */
-/*   Updated: 2026/05/15 19:38:07 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/02 17:58:11 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,30 +37,15 @@ int	main(void)
 	if (mlx_image_to_window(mlx, img, 0, 0) < 0)
 		ft_error();
 
-	/*line.p0.x = 10;
-	line.p0.y = 20;
-	line.p1.x = 100;
-	line.p1.y = 100;
-	line.color = 0x00FF00FF;
-	line.thick = 5;
-	draw_line_thick(img, &line);
+	draw_line_thick(img,
+		&(t_line){(t_coord){10, 20}, (t_coord){100, 100}, 0x00FF00FF, 10});
 
-	line2.p0.x = 80;
-	line2.p0.y = 20;
-	line2.p1.x = 400;
-	line2.p1.y = 120;
-	line2.color = 0x0000FFFF;
-	line2.thick = 10;
-	draw_line_thick(img, &line2);*/
+	draw_line_thick(img,
+		&(t_line){(t_coord){80, 20}, (t_coord){400, 120}, 0x0000FFFF, 1});
 
-	line2.p0.x = 80;
-	line2.p0.y = 20;
-	line2.p1.x = 400;
-	line2.p1.y = 120;
-	line2.color = 0x0000FFFF;
-	line2.thick = 10;
-	draw_line_thick(img, &(t_line){(t_coord){256, 256}, (t_coord){480, 256}, 0xFF00FFFF, 1});
-	
+	draw_line_thick(img,
+		&(t_line){(t_coord){256, 256}, (t_coord){480, 256}, 0xFF00FFFF, 5});
+
 	mlx_loop(mlx);
 	mlx_terminate(mlx);
 	return (EXIT_SUCCESS);

@@ -6,7 +6,7 @@
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 19:11:53 by dchernik          #+#    #+#             */
-/*   Updated: 2026/05/15 20:49:00 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/02 17:53:39 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	draw_line(mlx_image_t *img, t_coord p0, t_coord p1, uint32_t color)
 	err = deltas[BR_DX] + deltas[BR_DY];
 	while (1)
 	{
-		mlx_put_pixel(img, p0.x, p0.y, color);
+		put_pixel_safe(img, p0.x, p0.y, color);
 		if (p0.x == p1.x && p0.y == p1.y)
 			break ;
 		bresenham_update_error(&p0, &err, deltas, steps);
@@ -100,18 +100,20 @@ static void	bresenham_update_error(t_coord *p0, int *err,
  * nlen     - length of the normal vector (n). */
 void	draw_line_thick(mlx_image_t *img, t_line *line)
 {
-	int		nx;
-	int		ny;
+	double	nx;
+	double	ny;
+	double	n_len;
 	int		offset_x;
 	int		offset_y;
-	double	n_len;
 
+	nx = -1 * (line->p1.y - line->p0.y);
+	ny = line->p1.x - line->p0.x;
 	n_len = sqrt((nx * nx) + (ny * ny));
-	nx = line->p1.x - line->p0.x;
-	ny = line->p1.y - line->p0.y;
-	offset_x = (int)(((double)nx / n_len) * ((double)line->thick / 2));
-	offset_y = (int)(((double)ny / n_len) * ((double)line->thick / 2));
-		
+	if (n_len == 0)
+		return ;
+	offset_x = round((nx / n_len) * ((double)line->thick / 2.0));
+	offset_y = round((ny / n_len) * ((double)line->thick / 2.0));
+	draw_girdling_rect(img, line, offset_x, offset_y);
 }
 
 static void	draw_girdling_rect(mlx_image_t *img, t_line *line,

@@ -6,7 +6,7 @@
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 19:11:49 by dchernik          #+#    #+#             */
-/*   Updated: 2026/05/15 19:31:55 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/02 17:52:54 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ typedef struct s_polygon
 
 /* graphx_common.c */
 void	ft_error(void);
+void	put_pixel_safe(mlx_image_t *img, int x, int y, uint32_t color);
 
 /* graphx_line.c */
 void	draw_line(mlx_image_t *img, t_coord p0, t_coord p1, uint32_t color);
