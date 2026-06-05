@@ -8,15 +8,14 @@
  * vector (nx; ny) to unit length and stretch it by multiplying
  * its coordinates by half of the desired line thickness. We
  * call this final transformed vector the 'offset vector', with
- * coordinates (offset_x; offset_y).
- * Next, we draw a rectangle around the initial line represented
- * by p0 and p1. To get one side of this rectangle, we move both
- * endpoints of the line by the (offset) vector. Then, to get the
- * opposite side (parallel to the (p0; p1) vector), we move both
- * endpoints by the negative (offset) vector.
- * In other words, we add/subtract the (offset) vector to/from the
- * coordinates of the line endpoints. Finally, all that remains is
- * to fill this rectangle with the specified color.
+ * coordinates (offset_x; offset_y).  * Next, we draw a rectangle
+ * around the initial line represented by p0 and p1. To get one
+ * side of this rectangle, we move both endpoints of the line by
+ * the (offset) vector. Then, to get the opposite side (parallel
+ * to the (p0; p1) vector), we move both endpoints by the negative
+ * (offset) vector. In other words, we add/subtract the (offset)
+ * vector to/from the coordinates of the line endpoints. Finally,
+ * all that remains is to fill this rectangle with the specified color.
  *
  * Link to an explanatory image:
  * https://www.figma.com/design/MOGITOdwaCYQ11DAqgljlT/cub3D?node-id=53-2&
@@ -50,23 +49,18 @@ void	draw_line_thick(mlx_image_t *img, t_line *line)
 void	draw_girdling_rect(mlx_image_t *img, t_line *line,
 	int offset_x, int offset_y)
 {
-	t_coord	a;
-	t_coord	b;
-	t_coord	c;
-	t_coord	d;
+	t_polygon	rect;
 
-	a.x = line->p0.x + offset_x;
-	a.y = line->p0.y + offset_y;
-	b.x = line->p1.x + offset_x;
-	b.y = line->p1.y + offset_y;
-	c.x = line->p1.x - offset_x;
-	c.y = line->p1.y - offset_y;
-	d.x = line->p0.x - offset_x;
-	d.y = line->p0.y - offset_y;
-	draw_line(img, a, b, line->color);
-	draw_line(img, b, c, line->color);
-	draw_line(img, c, d, line->color);
-	draw_line(img, d, a, line->color);
+	if (!polygon_init(&rect, 4))
+		return ;
+	rect.color = line->color;
+	rect.vertices[0] = (t_coord){ line->p0.x + offset_x, line->p0.y + offset_y };
+	rect.vertices[1] = (t_coord){ line->p1.x + offset_x, line->p1.y + offset_y };
+	rect.vertices[2] = (t_coord){ line->p1.x - offset_x, line->p1.y - offset_y };
+	rect.vertices[3] = (t_coord){ line->p0.x - offset_x, line->p0.y - offset_y };
+	polygon_fill(img, &rect);
+	polygon_draw(img, &rect);
+	polygon_free(&rect);
 }
 
 /* Draws a horizontal line (our scanline) at the specified `y` coordinate,

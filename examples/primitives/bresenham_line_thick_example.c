@@ -1,14 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bresenham_line_thick.c                             :+:      :+:    :+:   */
+/*   bresenham_line_thick_example.c                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/09 20:48:43 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/02 17:58:11 by dchernik         ###   ########.fr       */
+/*   Created: 2026/06/05 13:33:03 by dchernik          #+#    #+#             */
+/*   Updated: 2026/06/05 13:41:43 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+/*
+    First: build MLX42 library
+		(cd ../../mlx42/ && \
+		cmake -B build -DDEBUG=1 && \
+		cmake --build build/ -j$(nproc --all))
+	Then this:
+		gcc bresenham_line_thick_example.c \
+		graphx_common.c graphx_line.c \
+		graphx_line_thick.c graphx_polygon.c \
+		graphx_polygon2.c graphx_circle.c \
+		../../mlx42/build/libmlx42.a \
+		-O0 -g3 -ldl -lglfw -pthread -lm -lGL \
+		-o bresenham_line_thick_example
+*/
 
 #include <stdlib.h>
 #include <stdio.h>

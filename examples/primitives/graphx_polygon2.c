@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   graphx_line_thick2.c                               :+:      :+:    :+:   */
+/*   graphx_polygon2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/03 20:39:40 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/05 10:45:24 by dchernik         ###   ########.fr       */
+/*   Created: 2026/06/05 13:16:39 by dchernik          #+#    #+#             */
+/*   Updated: 2026/06/05 13:26:24 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,42 +14,6 @@
 
 #include <math.h>
 #include <stdlib.h>
-
-/* Finds and returns the minimum y coordinate
- * among all vertices of the polygon `poly` */
-int	polygon_min_y(t_polygon *poly)
-{
-	int	i;
-	int	min_y;
-
-	i = 1;
-	min_y = poly->vertices[0].y;
-	while (i < poly->vert_num)
-	{
-		if (poly->vertices[i].y < min_y)
-			min_y = poly->vertices[i].y;
-		++i;
-	}
-	return (min_y);
-}
-
-/* Finds and returns the maximum y coordinate
- * among all vertices of the polygon `poly` */
-int	polygon_max_y(t_polygon *poly)
-{
-	int	i;
-	int	max_y;
-
-	i = 1;
-	max_y = poly->vertices[0].y;
-	while (i < poly->vert_num)
-	{
-		if (poly->vertices[i].y > max_y)
-			max_y = poly->vertices[i].y;
-		++i;
-	}
-	return (max_y);
-}
 
 int	collect_intersections(t_polygon *poly, int y, double *x_intersections)
 {
@@ -73,7 +37,7 @@ int	collect_intersections(t_polygon *poly, int y, double *x_intersections)
 	return (count);
 }
 
-void	fill_polygon(mlx_image_t *img, t_polygon *poly)
+void	polygon_fill(mlx_image_t *img, t_polygon *poly)
 {
 	double		*x_intersections;
 	int			y;

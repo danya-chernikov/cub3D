@@ -6,7 +6,7 @@
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 19:11:49 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/05 10:38:50 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/05 13:19:05 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,17 +81,21 @@ void	draw_hline(mlx_image_t *img, t_pair_int *x, int y, uint32_t color);
 bool	edge_crosses_y(t_coord a, t_coord b, int y);
 double	edge_x_at_y(t_coord a, t_coord b, int y);
 
-/* graphx_line_thick2.c */
 int		polygon_min_y(t_polygon *poly);
 int		polygon_max_y(t_polygon *poly);
 int		collect_intersections(t_polygon *poly, int y, double *x_intersections);
-void	fill_polygon(mlx_image_t *img, t_polygon *poly);
+void	polygon_fill(mlx_image_t *img, t_polygon *poly);
 
 /* graphx_polygon.c */
 int		polygon_init(t_polygon *poly, int vert_num);
 void	polygon_free(t_polygon *poly);
-void	draw_polygon(mlx_image_t *img, t_polygon *poly);
+void	polygon_draw(mlx_image_t *img, t_polygon *poly);
+int		polygon_min_y(t_polygon *poly);
+int		polygon_max_y(t_polygon *poly);
 
+/* graphx_polygon2.c */
+int		collect_intersections(t_polygon *poly, int y, double *x_intersections);
+void	polygon_fill(mlx_image_t *img, t_polygon *poly);
 
 /* graphx_circle.c */
 

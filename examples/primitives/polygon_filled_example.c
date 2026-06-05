@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   polygon_example.c                                  :+:      :+:    :+:   */
+/*   polygon_filled_example.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/09 20:48:43 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/05 13:42:53 by dchernik         ###   ########.fr       */
+/*   Created: 2026/06/05 13:52:31 by dchernik          #+#    #+#             */
+/*   Updated: 2026/06/05 13:53:35 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@
 		cmake -B build -DDEBUG=1 && \
 		cmake --build build/ -j$(nproc --all))
 	Then this:
-		gcc polygon_example.c \
+		gcc polygon_filled_example.c \
 		graphx_common.c graphx_line.c \
 		graphx_line_thick.c graphx_polygon.c \
 		graphx_polygon2.c graphx_circle.c \
 		../../mlx42/build/libmlx42.a \
 		-O0 -g3 -ldl -lglfw -pthread -lm -lGL \
-		-o polygon_example
+		-o polygon_filled_example
 */
 
 #include <stdlib.h>
@@ -59,6 +59,7 @@ int	main(void)
 	poly.vertices[1].y = 100;
 	poly.vertices[2].x = 300;
 	poly.vertices[2].y = 300;
+	polygon_fill(img, &poly);
 	polygon_draw(img, &poly);
 
 	polygon_init(&poly2, 4);
@@ -72,6 +73,7 @@ int	main(void)
 	poly2.vertices[2].y = 300;
 	poly2.vertices[3].x = 100;
 	poly2.vertices[3].y = 300;
+	polygon_fill(img, &poly2);
 	polygon_draw(img, &poly2);
 
 	mlx_loop(mlx);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   polygon_example.c                                  :+:      :+:    :+:   */
+/*   bresenham_line_example.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/09 20:48:43 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/05 13:42:53 by dchernik         ###   ########.fr       */
+/*   Created: 2026/06/05 13:45:54 by dchernik          #+#    #+#             */
+/*   Updated: 2026/06/05 13:51:28 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,32 +16,30 @@
 		cmake -B build -DDEBUG=1 && \
 		cmake --build build/ -j$(nproc --all))
 	Then this:
-		gcc polygon_example.c \
+		gcc bresenham_line_example.c \
 		graphx_common.c graphx_line.c \
 		graphx_line_thick.c graphx_polygon.c \
 		graphx_polygon2.c graphx_circle.c \
 		../../mlx42/build/libmlx42.a \
 		-O0 -g3 -ldl -lglfw -pthread -lm -lGL \
-		-o polygon_example
+		-o bresenham_line_example
 */
 
 #include <stdlib.h>
-#include <stdio.h>
-#include <unistd.h>
 
 #include "graphx.h"
 
-#define WIN_WIDTH	512
-#define WIN_HEIGHT	512
+#define WIN_WIDTH	256
+#define WIN_HEIGHT	256
 
 int	main(void)
 {
-	mlx_t		*mlx;
-	mlx_image_t	*img;
-	t_polygon	poly;
-	t_polygon	poly2;
+	mlx_t			*mlx;
+	mlx_image_t		*img;
+	t_coord			p0;
+	t_coord			p1;
 
-	mlx = mlx_init(WIN_WIDTH, WIN_HEIGHT, "Drawing a polygon", true);
+	mlx = mlx_init(WIN_WIDTH, WIN_HEIGHT, "Bresenham's Line Algorithm", true);
 	if (!mlx)
 		ft_error();
 	img = mlx_new_image(mlx, WIN_WIDTH, WIN_HEIGHT);
@@ -49,34 +47,12 @@ int	main(void)
 		ft_error();
 	if (mlx_image_to_window(mlx, img, 0, 0) < 0)
 		ft_error();
-
-	polygon_init(&poly, 3);
-	poly.thick = 1;
-	poly.color = 0x00FF00FF;
-	poly.vertices[0].x = 50;
-	poly.vertices[0].y = 50;
-	poly.vertices[1].x = 150;
-	poly.vertices[1].y = 100;
-	poly.vertices[2].x = 300;
-	poly.vertices[2].y = 300;
-	polygon_draw(img, &poly);
-
-	polygon_init(&poly2, 4);
-	poly2.thick = 1;
-	poly2.color = 0x00FFFFFF;
-	poly2.vertices[0].x = 100;
-	poly2.vertices[0].y = 100;
-	poly2.vertices[1].x = 400;
-	poly2.vertices[1].y = 100;
-	poly2.vertices[2].x = 400;
-	poly2.vertices[2].y = 300;
-	poly2.vertices[3].x = 100;
-	poly2.vertices[3].y = 300;
-	polygon_draw(img, &poly2);
-
+	p0.x = 10;
+	p0.y = 20;
+	p1.x = 100;
+	p1.y = 100;
+	draw_line(img, p0, p1, 0x00FF00FF);
 	mlx_loop(mlx);
 	mlx_terminate(mlx);
-	polygon_free(&poly);
-	polygon_free(&poly2);
 	return (EXIT_SUCCESS);
 }
