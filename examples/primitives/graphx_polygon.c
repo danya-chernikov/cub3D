@@ -6,12 +6,13 @@
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 19:11:55 by dchernik          #+#    #+#             */
-/*   Updated: 2026/05/15 19:11:58 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/05 10:36:32 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "graphx.h"
 
+#include <stdio.h>
 #include <stdlib.h>
 
 int	polygon_init(t_polygon *poly, int vert_num)
@@ -21,7 +22,10 @@ int	polygon_init(t_polygon *poly, int vert_num)
 	poly->vert_num = vert_num;
 	poly->vertices = malloc(vert_num * sizeof(t_coord));
 	if (!poly->vertices)
+	{
+		perror("malloc");
 		return (COMMON_FAILURE);
+	}
 	return (COMMON_SUCCESS);
 }
 
