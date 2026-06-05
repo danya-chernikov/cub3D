@@ -17,7 +17,7 @@ typedef struct s_dcoord
 typedef struct s_player
 {
 	t_dcoord	pos;	
-	double		radius;
+	double		collision_radius;
 	double		speed;
 }	t_player;
 
@@ -31,7 +31,7 @@ typedef struct s_minimap
 	t_coord		pos;
 	int			size;
 	int			tile_size;
-	int			player_radius;
+	int			player_radius_px;
 	uint32_t	bg_color;
 	uint32_t	wall_color;
 	uint32_t	bg_color;

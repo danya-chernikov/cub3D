@@ -6,7 +6,7 @@
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 19:11:47 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/05 10:36:56 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/05 19:58:13 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,9 @@ static void	swap(double *a, double *b)
 
 static size_t	partition(double *arr, int low, int high)
 {
-	int	pivot;
-	int	i;
-	int	j;
+	double	pivot;
+	int		i;
+	int		j;
 
 	j = low;
 	i = low - 1;

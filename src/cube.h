@@ -6,7 +6,7 @@
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/21 15:19:30 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/05 18:52:15 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/05 20:24:05 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef struct s_cube
 	int				map_height;
 	t_player		player;
 	t_minimap		minimap;
-	t_graph_data	gfx;
+	t_graph_data	gfx; // we'll definitey need it
 }	t_cube;
 
 /* Contains file paths to
