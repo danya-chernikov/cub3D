@@ -6,7 +6,7 @@
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 19:11:49 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/05 13:19:05 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/05 14:39:34 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,9 @@ int		collect_intersections(t_polygon *poly, int y, double *x_intersections);
 void	polygon_fill(mlx_image_t *img, t_polygon *poly);
 
 /* graphx_circle.c */
-
+void	circle_draw(mlx_image_t *img, t_coord center,
+	int radius, uint32_t color);
+void	circle_filled_draw(mlx_image_t *img, t_coord center,
+	int radius, uint32_t color);
 
 #endif
