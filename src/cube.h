@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
+/*   By: adeestev <adeestev@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/21 15:19:30 by dchernik          #+#    #+#             */
-/*   Updated: 2026/04/21 15:19:32 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/02 15:10:47 by adeestev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,5 @@ typedef struct s_texture
 	const char	*west_path;
 }	t_texture;
 
-/* Function definitions */
-void	stub_func(void);
 
 #endif

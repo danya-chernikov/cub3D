@@ -1,0 +1,33 @@
+parsing test
+------------
+
+all maps are created from the one present in the subject (val_subject)
+
+
+
+
+
+in src folder:
+
+norminette error.c parser.c parse_elements.c parse_color.c parse_map.c parse_validation.c parser_utils.c
+
+
+
+
+then compile:
+
+cc -Wall -Wextra -Werror main.c error.c parser.c parse_elements.c parse_color.c parse_map.c parse_validation.c parser_utils.c -I. -L../libft -lft -o cub3D
+
+
+
+
+
+execute:
+
+./cub3D ../maps/val_subject 
+
+
+
+
+
+test with all maps
