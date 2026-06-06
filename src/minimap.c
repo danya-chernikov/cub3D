@@ -2,8 +2,9 @@
 
 #include <stdbool.h>
 
-/* Check if a point with coordinates x and y is inside
- * the minimap's area */
+/* Check if a point with coordinates x and y is
+ * inside the minimap's area. If a point is inside
+ * the map returns true */
 int	in_minimap(t_minimap *minimap, int x, int y)
 {
 	if (x < minimap->pos.x || y < minimap->pos.y)
@@ -49,12 +50,12 @@ void	minimap_fill_rect(mlx_image_t *img, t_minimap *minimap, t_rect r)
  * (Our map easily may be non-rectangular) */
 int	map_row_len(u_char *row)
 {
-	int	i;
+	int	len;
 
-	i = 0;
-	while (row && row[i])
-		++i;
-	return (i);
+	len = 0;
+	while (row && row[len])
+		++len;
+	return (len);
 }
 
 /* Checks whether the map cell at coordinates (x, y)
@@ -71,25 +72,4 @@ int	map_cell_is_wall(t_cube *cube, int x, int y)
 	if (cube->map[y][x] == ' ')
 		return (true);
 	return (false);
-}
-
-/* Converts map cell coordinates to screen coordinates
- * inside our minimap. The player is kept in the center
- * of the minimap, so the map appears to scroll around
- * the player (at least I wanna acheive this..)
- *     mx - x coordinate on the minimap;
- *     my - y coordinate on the minimap. */
-t_coord	map_to_minimap(t_cube *cube, int mx, int my)
-{
-	t_coord		screen_coords;
-	t_minimap	*minimap;
-	double		dx;
-	double		dy;
-
-	minimap = &cube->minimap;
-	dx = (mx - cube->player.pos.x) * minimap->tile_size;
-	dy = (my - cube->player.pos.y) * minimap->tile_size;
-	screen_coords.x = minimap->pos.x + minimap->size / 2 + (int)round(dx);
-	screen_coords.y = minimap->pos.y + minimap->size / 2 + (int)round(dy);
-	return (screen_coords);
 }

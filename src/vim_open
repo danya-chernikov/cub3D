@@ -1,1 +1,1 @@
-main.c cube.c cube.h error.c error.h graphx.h graphx_common.c graphx_line.c graphx_line_thick.c graphx_polygon.c graphx_polygon2.c graphx_circle.c
+main.c cube.c cube.h error.c minimap.c minimap2.c minimap.h error.h graphx.h graphx_common.c graphx_line.c graphx_line_thick.c graphx_polygon.c graphx_polygon2.c graphx_circle.c
