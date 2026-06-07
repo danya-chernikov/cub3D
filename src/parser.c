@@ -6,12 +6,15 @@
 /*   By: adeestev <adeestev@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/16 14:52:43 by adeestev          #+#    #+#             */
-/*   Updated: 2026/06/05 17:32:18 by adeestev         ###   ########.fr       */
+/*   Updated: 2026/06/06 23:11:27 by adeestev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
+/*
+validates that file has the correct extension
+*/
 static int	check_extension(const char *filename)
 {
 	size_t	len;
@@ -22,6 +25,11 @@ static int	check_extension(const char *filename)
 	return (1);
 }
 
+/*
+initializes temporary parsing workspace to safe values:
+(to prevent undefined behavior and ensure that cleanup functions do not
+free uninitialized memory if parsing fails early)
+*/
 static void	init_parse_data(t_parse_data *data)
 {
 	data->fd = -1;
@@ -40,16 +48,25 @@ static void	init_parse_data(t_parse_data *data)
 	data->vis = NULL;
 }
 
+/*
+the central router for the parsing loop: (it evaluates a single line)
+- empty lines before the map are ignored
+- empty lines after map has started triggers map_ended flag
+(ensuring map is last element in file) 
+- configuration elements are sent to parse_element
+- if element appears after the map starts means error
+- if not empty and not element, it is sent to handle_map_line
+*/
 static void	handle_line(t_cube *cube, t_parse_data *data)
 {
-	bool	is_emp;
+	bool	is_empty;
 
 	data->has_content = true;
-	is_emp = (*skip_spaces(data->line) == '\n'
+	is_empty = (*skip_spaces(data->line) == '\n'
 			|| *skip_spaces(data->line) == '\0');
-	if (is_emp && data->map_started)
+	if (is_empty && data->map_started)
 		data->map_ended = true;
-	else if (is_emp)
+	else if (is_empty)
 		return ;
 	else if (is_element_line(data->line))
 	{
@@ -65,6 +82,12 @@ static void	handle_line(t_cube *cube, t_parse_data *data)
 		handle_map_line(cube, data);
 }
 
+/*
+iterates through the file line by line:
+for every line, it calls handle_line and then immediately frees the line
+pointer and sets it to NULL (guarantees that no double-frees or dangling
+pointers occur during the reading process)
+*/
 static int	read_file_lines(t_cube *cube, t_parse_data *data)
 {
 	int	err;
@@ -84,6 +107,16 @@ static int	read_file_lines(t_cube *cube, t_parse_data *data)
 	return (1);
 }
 
+/*
+the main parsing part:
+- creates temporary workspace and initialize it
+- verify extension and open file safely
+- extract elements and map lines into the linked list.
+- ensure 6 elements and map content are present
+- convert the linked list into a 2D array
+- run validations (walls, characters, flood-fill)
+- cleans up the workspace and return the t_cube
+*/
 int	parse_cub_file(const char *filename, t_cube *cube)
 {
 	t_parse_data	data;

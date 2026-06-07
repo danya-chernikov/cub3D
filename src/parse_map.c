@@ -6,12 +6,16 @@
 /*   By: adeestev <adeestev@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/20 13:11:52 by adeestev          #+#    #+#             */
-/*   Updated: 2026/06/05 17:32:58 by adeestev         ###   ########.fr       */
+/*   Updated: 2026/06/07 01:09:02 by adeestev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
+/*
+validates that floor or player tile is safe: if the cell touches the boundaries
+of the 2D array or a space, it means the wall is unclosed
+*/
 int	check_neighbors(t_cube *c, t_parse_data *d, int x, int y)
 {
 	if (x == 0 || y == 0 || x == d->map_width - 1 || y == d->map_height - 1)
@@ -22,6 +26,11 @@ int	check_neighbors(t_cube *c, t_parse_data *d, int x, int y)
 	return (1);
 }
 
+/*
+safely duplicates a map string and appends it to a temporary linked list (since
+total map height is unknown during reading) and tracks the maximum line width
+found, which dictates the dimensions for the final 2D array
+*/
 int	process_map_line(char *line, t_parse_data *data)
 {
 	t_list	*new_node;
@@ -45,6 +54,11 @@ int	process_map_line(char *line, t_parse_data *data)
 	return (1);
 }
 
+/*
+copies characters from the linked list into a row of the final 2D array and
+pads any remaining width with space characters (this force map lines into a
+perfect rectangle)
+*/
 static void	fill_map_row(u_char *row, char *line, int width)
 {
 	int	i;
@@ -63,6 +77,10 @@ static void	fill_map_row(u_char *row, char *line, int width)
 	row[width] = '\0';
 }
 
+/*
+allocates the final 2D map array (based on the dimensions calculated during the
+reading phase) and prepares the grid for the final validation
+*/
 int	build_map_array(t_cube *cube, t_parse_data *data)
 {
 	t_list	*curr;
@@ -87,6 +105,9 @@ int	build_map_array(t_cube *cube, t_parse_data *data)
 	return (1);
 }
 
+/*
+prevents grid parsing if the 6 elements haven't been found yet or if end of map
+*/
 void	handle_map_line(t_cube *cube, t_parse_data *data)
 {
 	char	*p;

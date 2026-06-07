@@ -6,12 +6,16 @@
 /*   By: adeestev <adeestev@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/20 13:12:49 by adeestev          #+#    #+#             */
-/*   Updated: 2026/06/05 11:31:31 by adeestev         ###   ########.fr       */
+/*   Updated: 2026/06/07 01:43:13 by adeestev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
+/*
+flood-fill algorithm:
+it stops when hitting map boundaries, spaces or previously visited cells
+*/
 static void	flood_fill_cont(t_cube *c, t_parse_data *d, int x, int y)
 {
 	if (x < 0 || y < 0 || x >= d->map_width || y >= d->map_height)
@@ -25,6 +29,9 @@ static void	flood_fill_cont(t_cube *c, t_parse_data *d, int x, int y)
 	flood_fill_cont(c, d, x, y - 1);
 }
 
+/*
+frees the temporary boolean array used by the flood-fill algorithm
+*/
 static void	free_vis(char **vis, int height)
 {
 	int	i;
@@ -41,6 +48,11 @@ static void	free_vis(char **vis, int height)
 	free(vis);
 }
 
+/*
+allocates the "vis" array, triggers the flood-fill and scans the entire map;
+if it finds a valid wall or floor tile that the algorithm couldn't reach, it
+rejects the file for containing a disconnected map island
+*/
 static int	check_islands(t_cube *c, t_parse_data *d)
 {
 	int	y;
@@ -69,6 +81,10 @@ static int	check_islands(t_cube *c, t_parse_data *d)
 	return (free_vis(d->vis, d->map_height), 1);
 }
 
+/*
+validates map cell with allowed chars and ensure the map is perfectly surrounded
+by walls.
+*/
 static int	check_cell(t_cube *c, t_parse_data *d, int x, int y)
 {
 	char	cell;
@@ -91,6 +107,11 @@ static int	check_cell(t_cube *c, t_parse_data *d, int x, int y)
 	return (1);
 }
 
+/*
+final map inspection loop:
+it iterates over every single cell calling check_cell on each,
+verifies that only one player was found and triggers the flood-fill check
+*/
 int	validate_map(t_cube *c, t_parse_data *d)
 {
 	int	x;

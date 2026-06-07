@@ -6,12 +6,18 @@
 /*   By: adeestev <adeestev@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/27 11:27:25 by adeestev          #+#    #+#             */
-/*   Updated: 2026/06/05 11:37:37 by adeestev         ###   ########.fr       */
+/*   Updated: 2026/06/07 00:20:37 by adeestev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
+/*
+extracts and validates a file path for a texture:
+- rejects if the texture pointer is already filled (duplicates)
+- open and verify the file exists on the system
+- ensure no garbage text was appended
+*/
 static int	assign_tture(const char **tex_path, char *ptr)
 {
 	int		len;
@@ -41,6 +47,10 @@ static int	assign_tture(const char **tex_path, char *ptr)
 	return (1);
 }
 
+/*
+identifies the type by checking prefix of the line then routes the remainder
+of the string to the texture allocator or the color parser
+*/
 static int	parse_texture_or_color(char *ptr, t_cube *c, t_parse_data *d)
 {
 	if (!ft_strncmp(ptr, "NO", 2) && (ptr[2] == ' ' || ptr[2] == '\t'))
@@ -68,6 +78,10 @@ static int	parse_texture_or_color(char *ptr, t_cube *c, t_parse_data *d)
 	return (print_error("Identifier is invalid"), 0);
 }
 
+/*
+allocates the texture struct on the first valid element found and increments
+the elements_found counter
+*/
 int	parse_element(char *line, t_cube *cube, t_parse_data *data)
 {
 	char	*ptr;
@@ -84,6 +98,9 @@ int	parse_element(char *line, t_cube *cube, t_parse_data *data)
 	return (0);
 }
 
+/*
+check that exactly 6 configuration elements were successfully stored
+*/
 int	check_all_elements_found(t_parse_data *data, t_cube *cube)
 {
 	if (data->elements_found < 6)
@@ -99,6 +116,9 @@ int	check_all_elements_found(t_parse_data *data, t_cube *cube)
 	return (1);
 }
 
+/*
+checks if first characters of line match a valid identifier
+*/
 bool	is_element_line(char *line)
 {
 	char	*p;
