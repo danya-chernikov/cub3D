@@ -36,9 +36,35 @@ void	minimap_draw_wall(mlx_image_t *img, t_cube *cube, int mx, int my)
 	minimap_fill_rect(img, &cube->minimap, r);
 }
 
+/* Draws the minimap backgound as a filled square */
+void	minimap_draw_bg(mlx_image_t *img, t_minimap *minimap)
+{
+	t_rect	bg;
+
+	bg.pos = minimap->pos;
+	bg.w = minimap->size;
+	bg.h = minimap->size;
+	bg.color = minimap->color;
+	minimap_fill_rect(img, minimap, bg);
+}
+
+/*void	minimap_draw_walls(mlx_image_t *img, t_cube *cube)
+{
+}*/
+
+void	minimap_draw_player(mlx_image_t *img, t_cube *cube)
+{
+	t_coord	center;	
+
+	center.x = cube->minimap.pos.x + cube->minimap.size / 2;
+	center.y = cube->minimap.pos.y + cube->minimap.size / 2;
+	circle_filled_draw(img, center, cube->minimap.player_radius_px,
+		cube->minimap.player_color);
+}
+
 void	minimap_draw(mlx_image_t *img, t_cube *cube)
 {
 	minimap_draw_background();
-	minimap_draw_walls(img, cube);
+	//minimap_draw_walls(img, cube);
 	minimap_draw_player(img, cube);
 }

@@ -37,7 +37,7 @@ typedef struct s_minimap
 	int			player_radius_px;
 	uint32_t	bg_color;
 	uint32_t	wall_color;
-	uint32_t	bg_color;
+	uint32_t	player_color;
 }	t_minimap;
 
 /* Helper structure that represents a rectangle
@@ -60,8 +60,10 @@ int		map_cell_is_wall(t_cube *cube, int x, int y);
 
 /* minimap2.c */
 t_coord	map_cell_to_minimap(t_cube *cube, int mx, int my);
-
-
+void	minimap_draw_wall(mlx_image_t *img, t_cube *cube, int mx, int my);
+void	minimap_draw_bg(mlx_image_t *img, t_minimap *minimap);
+void	minimap_draw_player(mlx_image_t *img, t_cube *cube);
+void	minimap_draw(mlx_image_t *img, t_cube *cube);
 
 
 

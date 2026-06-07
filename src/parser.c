@@ -6,7 +6,7 @@
 /*   By: adeestev <adeestev@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/16 14:52:43 by adeestev          #+#    #+#             */
-/*   Updated: 2026/06/06 23:11:27 by adeestev         ###   ########.fr       */
+/*   Updated: 2026/06/07 20:11:29 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ free uninitialized memory if parsing fails early)
 */
 static void	init_parse_data(t_parse_data *data)
 {
+	/* I guess here we could use just:
+	 * ft_bzero(data, sizeof(*data)); */
 	data->fd = -1;
 	data->line = NULL;
 	data->elements_found = 0;

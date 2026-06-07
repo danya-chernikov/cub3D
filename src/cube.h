@@ -6,7 +6,7 @@
 /*   By: adeestev <adeestev@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/21 15:19:30 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/02 15:10:47 by adeestev         ###   ########.fr       */
+/*   Updated: 2026/06/07 19:51:16 by dchernik         ###   ########.fr       */
 /*   Updated: 2026/06/05 20:24:05 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -16,6 +16,9 @@
 
 # include <stdint.h>
 # include <sys/types.h>
+
+# define WIN_WIDTH	1024
+# define WIN_HEIGHT	768
 
 typedef struct s_texture	t_texture;
 
@@ -47,5 +50,7 @@ typedef struct s_texture
 	const char	*west_path;
 }	t_texture;
 
+void	game_loop(void *param);
+void	clear_image(mlx_image_t *img, uint32_t color);
 
 #endif
