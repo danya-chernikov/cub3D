@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
+/*   By: adeestev <adeestev@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/21 15:19:43 by dchernik          #+#    #+#             */
-/*   Updated: 2026/04/21 15:19:44 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/05 11:35:25 by adeestev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,14 @@ void	print_warning(const char *msg)
 	ft_strlcat(buf, msg, WARN_BUF_SIZE);
 	ft_strlcat(buf, "\n", WARN_BUF_SIZE);
 	write(STDERR_FILENO, buf, ft_strlen(buf));
+}
+
+// Required by subject
+void	print_error(const char *msg)
+{
+	if (!msg)
+		return ;
+	write(STDERR_FILENO, "Error\n", 6);
+	write(STDERR_FILENO, msg, ft_strlen(msg));
+	write(STDERR_FILENO, "\n", 1);
 }

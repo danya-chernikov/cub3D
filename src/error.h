@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
+/*   By: adeestev <adeestev@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/21 15:19:38 by dchernik          #+#    #+#             */
-/*   Updated: 2026/04/21 15:19:39 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/05 11:35:04 by adeestev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,7 @@
  * source files (which is a very common thing btw) */
 void	print_sys_error(const char *msg);
 void	print_warning(const char *msg);
+
+void	print_error(const char *msg); //required by subject
 
 #endif
