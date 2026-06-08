@@ -1,6 +1,37 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minimap.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/06/08 15:06:45 by dchernik          #+#    #+#             */
+/*   Updated: 2026/06/08 15:17:44 by dchernik         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minimap.h"
 
 #include <stdbool.h>
+
+void	minimap_init(t_cube *cube, t_coord pos)
+{
+	cube->minimap.pos = pos;
+	cube->minimap.size = 180;
+	cube->minimap.tile_size = 16;
+	cube->minimap.player_radius_px = 5;
+	cube->minimap.bg_color = COLOR_ALMOST_BLACK;
+	cube->minimap.wall_color = COLOR_GRAY;
+	cube->minimap.player_color = COLOR_BLUE;
+}
+
+void	minimap_draw(mlx_image_t *img, t_cube *cube)
+{
+	minimap_draw_background();
+	//minimap_draw_walls(img, cube);
+	minimap_draw_player(img, cube);
+}
+
 
 /* Check if a point with coordinates x and y is
  * inside the minimap's area. If a point is inside

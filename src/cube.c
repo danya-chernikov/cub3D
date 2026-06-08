@@ -6,13 +6,28 @@
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/21 15:19:23 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/07 20:17:12 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/08 16:08:36 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
+#include "minimap.h"
 
 #include <stdio.h>
+#include <stdbool.h>
+
+int	graphx_init(t_cube *cube)
+{
+	cube->gfx.mlx = mlx.init(WIN_WIDTH, WIN_HEIGHT, "cub3D", true);
+	if (!cube->gfx.mlx)
+		return (COMMON_FAILURE);
+	cube->gfx.img = mlx_new_image(cube->gfx.mlx, WIN_WIDTH, WIN_HEIGHT);
+	if (!cube->gfx.img)
+		return (COMMON_FAILURE);
+	if (mlx_image_to_window(cube->gfx.mlx, cube->gfx.img, 0, 0) < 0)
+		return (COMMON_FAILURE);
+	return (COMMON_SUCCESS);
+}
 
 void	game_loop(void *param)
 {
@@ -20,18 +35,8 @@ void	game_loop(void *param)
 
 	cube = param;
 	clear_image(cube->gfx.img, 0x202020FF);
-	player_handle_input(cube);
+	//player_handle_input(cube);
 	minimap_draw(cube->gfx.img, cube);
-}
-
-void	player_init(t_cube *cube)
-{
-
-}
-
-void		minimap_init(t_cube *cube)
-{
-
 }
 
 /* Fills the entire image with one color. This isused

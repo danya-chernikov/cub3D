@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minimap2.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/06/08 15:06:43 by dchernik          #+#    #+#             */
+/*   Updated: 2026/06/08 15:26:39 by dchernik         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minimap.h"
 
 /* Converts map cell coordinates to screen coordinates
@@ -50,6 +62,7 @@ void	minimap_draw_bg(mlx_image_t *img, t_minimap *minimap)
 
 /*void	minimap_draw_walls(mlx_image_t *img, t_cube *cube)
 {
+
 }*/
 
 void	minimap_draw_player(mlx_image_t *img, t_cube *cube)
@@ -60,11 +73,4 @@ void	minimap_draw_player(mlx_image_t *img, t_cube *cube)
 	center.y = cube->minimap.pos.y + cube->minimap.size / 2;
 	circle_filled_draw(img, center, cube->minimap.player_radius_px,
 		cube->minimap.player_color);
-}
-
-void	minimap_draw(mlx_image_t *img, t_cube *cube)
-{
-	minimap_draw_background();
-	//minimap_draw_walls(img, cube);
-	minimap_draw_player(img, cube);
 }

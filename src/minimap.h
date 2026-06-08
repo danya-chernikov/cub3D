@@ -1,13 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minimap.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/06/08 15:06:55 by dchernik          #+#    #+#             */
+/*   Updated: 2026/06/08 16:02:24 by dchernik         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef MINIMAP_H
 # define MINIMAP_H
-
-/* Coordinates as extended
- * presision floating point */
-typedef struct s_dcoord
-{
-	double	x;
-	double	y;
-}	t_dcoord;
 
 /* Stores the player's position in world coordinates.
  * One map cell is treated as 1.0 unit, so the player
@@ -51,6 +55,8 @@ typedef struct s_rect
 }	t_rect;
 
 /* minimap.c */
+void	minimap_init(t_cube *cube, t_coord pos);
+void	minimap_draw(mlx_image_t *img, t_cube *cube);
 int		in_minimap(t_minimap *minimap, int x, int y);
 void	minimap_put_pixel(mlx_image_t *img, t_minimap *minimap,
 	int x, int y, uint32_t color);
@@ -63,8 +69,8 @@ t_coord	map_cell_to_minimap(t_cube *cube, int mx, int my);
 void	minimap_draw_wall(mlx_image_t *img, t_cube *cube, int mx, int my);
 void	minimap_draw_bg(mlx_image_t *img, t_minimap *minimap);
 void	minimap_draw_player(mlx_image_t *img, t_cube *cube);
-void	minimap_draw(mlx_image_t *img, t_cube *cube);
 
+/* minimap3.c */
 
 
 #endif
