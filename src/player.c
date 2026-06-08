@@ -6,7 +6,7 @@
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 15:53:27 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/08 15:53:28 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/08 20:43:47 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,12 @@ void	player_init(t_cube *cube)
 			if (is_player_spawn(cube->map[y][x]))
 			{
 				set_player_spawn(cube, x, y);
-				return (COMMON_SUCCESS);
+				return ;
 			}
 			++x;
 		}
 		++y;
 	}
-	return (COMMON_FAILURE);
 }
 
 int	is_player_spawn(u_char c)
@@ -51,7 +50,7 @@ void	set_player_spawn(t_cube *cube, int x, int y)
 {
 	cube->player.pos.x = x + 0.5;
 	cube->player.pos.y = y + 0.5;
-	cube->player.radius = 0.18;
+	cube->player.collision_radius = 0.18;
 	cube->player.speed = 0.05;
 	cube->map[y][x] = '0';
 }

@@ -6,7 +6,7 @@
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 19:11:49 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/08 16:21:35 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/08 21:49:18 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,13 @@
 
 #include "MLX42.h"
 
-#define COMMON_SUCCESS	1
-#define COMMON_FAILURE	0
-
+/* For Bresenham's algorithm */
 #define BR_DX	0
 #define BR_DY	1
 #define BR_SX	0
 #define BR_SY	1
 
+/* Window parameters */
 # define WIN_WIDTH	1024
 # define WIN_HEIGHT	768
 
@@ -39,7 +38,9 @@
 #define COLOR_BROWN			0x895129FF
 #define COLOR_ORANGE		0xFF6A00FF
 #define COLOR_PINK			0xFF008CFF
-#define COLOR_ALMOST_BLACK	0x201E1DFF
+#define COLOR_ALMOST_BLACK	0x202020FF
+#define COLOR_ALMOST_WHITE	0xEDEDEDFF
+#define COLOR_BLUISH		0xB8DEF7FF
 
 typedef struct s_coord
 {

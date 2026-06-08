@@ -6,7 +6,7 @@
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 18:40:28 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/08 16:06:35 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/08 18:37:47 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,11 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <stdbool.h>
+
+typedef unsigned char	u_char;
+
+#define COMMON_SUCCESS	1
+#define COMMON_FAILURE	0
 
 /* ==================== get_next_line() DEFINITIONS  ==================== */
 # ifndef GNL_BUFFER_SIZE

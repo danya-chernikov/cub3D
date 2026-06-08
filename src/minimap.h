@@ -6,27 +6,20 @@
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 15:06:55 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/08 16:02:24 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/08 21:08:19 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIMAP_H
 # define MINIMAP_H
 
-/* Stores the player's position in world coordinates.
- * One map cell is treated as 1.0 unit, so the player
- * can stand between cells, not only exactly inside
- * one cell.
- *     pos				- player's position in world coordinates,
- *						  measured in map-cell units;
- *     collision_radius - player's physical radius on the minimap,
- *						  measured in map-cell units. */
-typedef struct s_player
-{
-	t_dcoord	pos;	
-	double		collision_radius;
-	double		speed;
-}	t_player;
+# include "player.h"
+
+/* All values are in px */
+# define MINIMAP_SIZE		180 /* Length of minimap's side */
+# define MINIMAP_TILE_SIZE	16
+# define MINIMAP_POS_X		20
+# define MINIMAP_POS_Y		20
 
 /* Represents our 2D minimap.
  *     pos				- minimap's position in the main window;
@@ -57,20 +50,19 @@ typedef struct s_rect
 /* minimap.c */
 void	minimap_init(t_cube *cube, t_coord pos);
 void	minimap_draw(mlx_image_t *img, t_cube *cube);
-int		in_minimap(t_minimap *minimap, int x, int y);
-void	minimap_put_pixel(mlx_image_t *img, t_minimap *minimap,
-	int x, int y, uint32_t color);
+void	minimap_draw_player(mlx_image_t *img, t_cube *cube);
+void	minimap_draw_background(mlx_image_t *img, t_minimap *minimap);
 void	minimap_fill_rect(mlx_image_t *img, t_minimap *minimap, t_rect r);
-int		map_row_len(u_char *row);
-int		map_cell_is_wall(t_cube *cube, int x, int y);
 
 /* minimap2.c */
-t_coord	map_cell_to_minimap(t_cube *cube, int mx, int my);
 void	minimap_draw_wall(mlx_image_t *img, t_cube *cube, int mx, int my);
-void	minimap_draw_bg(mlx_image_t *img, t_minimap *minimap);
-void	minimap_draw_player(mlx_image_t *img, t_cube *cube);
 
-/* minimap3.c */
-
+/* minimap_utils.c */
+void	minimap_put_pixel(mlx_image_t *img, t_minimap *minimap,
+	int x, int y, uint32_t color);
+int		in_minimap(t_minimap *minimap, int x, int y);
+int		map_cell_is_wall(t_cube *cube, int x, int y);
+int		map_row_len(u_char *row);
+t_coord	map_cell_to_minimap(t_cube *cube, int mx, int my);
 
 #endif

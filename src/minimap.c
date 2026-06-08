@@ -6,20 +6,20 @@
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 15:06:45 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/08 15:17:44 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/08 20:49:15 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minimap.h"
+#include "cube.h"
 
-#include <stdbool.h>
-
+/* For now let's draw a square minimap */
 void	minimap_init(t_cube *cube, t_coord pos)
 {
 	cube->minimap.pos = pos;
-	cube->minimap.size = 180;
-	cube->minimap.tile_size = 16;
-	cube->minimap.player_radius_px = 5;
+	cube->minimap.size = MINIMAP_SIZE;
+	cube->minimap.tile_size = MINIMAP_TILE_SIZE;
+	cube->minimap.player_radius_px = PLAYER_RADIUS;
 	cube->minimap.bg_color = COLOR_ALMOST_BLACK;
 	cube->minimap.wall_color = COLOR_GRAY;
 	cube->minimap.player_color = COLOR_BLUE;
@@ -27,34 +27,31 @@ void	minimap_init(t_cube *cube, t_coord pos)
 
 void	minimap_draw(mlx_image_t *img, t_cube *cube)
 {
-	minimap_draw_background();
+	minimap_draw_background(img, &cube->minimap);
 	//minimap_draw_walls(img, cube);
 	minimap_draw_player(img, cube);
 }
 
-
-/* Check if a point with coordinates x and y is
- * inside the minimap's area. If a point is inside
- * the map returns true */
-int	in_minimap(t_minimap *minimap, int x, int y)
+void	minimap_draw_player(mlx_image_t *img, t_cube *cube)
 {
-	if (x < minimap->pos.x || y < minimap->pos.y)
-		return (false);
-	if (x >= minimap->pos.x + minimap->size)
-		return (false);
-	if (y >= minimap->pos.y + minimap->size)
-		return (false);
-	return (true);
+	t_coord	center;	
+
+	center.x = cube->minimap.pos.x + cube->minimap.size / 2;
+	center.y = cube->minimap.pos.y + cube->minimap.size / 2;
+	circle_filled_draw(img, center, cube->minimap.player_radius_px,
+		cube->minimap.player_color);
 }
 
-/* Puts a pixel only if it belongs to the minimap area.
- * This clips minimap drawing to its square bounds */
-void	minimap_put_pixel(mlx_image_t *img, t_minimap *minimap,
-	int x, int y, uint32_t color)
+/* Draws the minimap backgound as a filled square */
+void	minimap_draw_background(mlx_image_t *img, t_minimap *minimap)
 {
-	if (!in_minimap(minimap, x, y))
-		return ;
-	put_pixel_safe(img, x, y, color);
+	t_rect	bg;
+
+	bg.pos = minimap->pos;
+	bg.w = minimap->size;
+	bg.h = minimap->size;
+	bg.color = minimap->bg_color;
+	minimap_fill_rect(img, minimap, bg);
 }
 
 /* Fills a rectangle with the specified color,
@@ -75,32 +72,4 @@ void	minimap_fill_rect(mlx_image_t *img, t_minimap *minimap, t_rect r)
 		}
 		++y;
 	}
-}
-
-/* Returns the length of a map row.
- * (Our map easily may be non-rectangular) */
-int	map_row_len(u_char *row)
-{
-	int	len;
-
-	len = 0;
-	while (row && row[len])
-		++len;
-	return (len);
-}
-
-/* Checks whether the map cell at coordinates (x, y)
- * should be treated as a wall. Cells outside the map
- * and spaces are also treated as walls */
-int	map_cell_is_wall(t_cube *cube, int x, int y)
-{
-	if (y < 0 || y >= cube->map_height)
-		return (true);
-	if (x < 0 || x >= map_row_len(cube->map[y]))
-		return (true);
-	if (cube->map[y][x] == '1')
-		return (true);
-	if (cube->map[y][x] == ' ')
-		return (true);
-	return (false);
 }
