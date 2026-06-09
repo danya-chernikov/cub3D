@@ -6,7 +6,7 @@
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 19:11:49 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/05 16:55:49 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/08 21:49:18 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,27 +15,46 @@
 
 #include "MLX42.h"
 
-#define COMMON_SUCCESS	1
-#define COMMON_FAILURE	0
-
+/* For Bresenham's algorithm */
 #define BR_DX	0
 #define BR_DY	1
 #define BR_SX	0
 #define BR_SY	1
 
-/* Our graphics data: the image buffer
- * associated with the current window */
-typedef struct s_graph_data
-{
-	mlx_t		*mlx;
-	mlx_image_t	*img;
-}	t_graph_data;
+/* Window parameters */
+# define WIN_WIDTH	1024
+# define WIN_HEIGHT	768
+
+/* Basic colors */
+#define COLOR_WHITE			0x000000FF
+#define COLOR_BACK			0xFFFFFFFF
+#define COLOR_RED			0xFF0000FF
+#define COLOR_BLUE			0x0000FFFF
+#define COLOR_GREEN			0x00FF00FF
+#define COLOR_YELLOW		0xFFFF00FF
+#define COLOR_CYAN			0x00FFFFFF
+#define COLOR_PURPLE		0xFF00FFFF
+#define COLOR_GRAY			0xB7B4B7FF
+#define COLOR_BROWN			0x895129FF
+#define COLOR_ORANGE		0xFF6A00FF
+#define COLOR_PINK			0xFF008CFF
+#define COLOR_ALMOST_BLACK	0x202020FF
+#define COLOR_ALMOST_WHITE	0xEDEDEDFF
+#define COLOR_BLUISH		0xB8DEF7FF
 
 typedef struct s_coord
 {
 	int	x;
 	int	y;
 }	t_coord;
+
+/* Coordinates as extended
+ * presision floating point */
+typedef struct s_dcoord
+{
+	double	x;
+	double	y;
+}	t_dcoord;
 
 /* Represents a pair of integers.
  * Introduced primarily to comply
@@ -46,7 +65,15 @@ typedef struct s_pair_int
 	int	second;
 }	t_pair_int;
 
-/* think - line's thinkness in pixels */
+/* Our graphics data: the image buffer
+ * associated with the current window */
+typedef struct s_graph_data
+{
+	mlx_t		*mlx;
+	mlx_image_t	*img;
+}	t_graph_data;
+
+/* thick - line's thinkness in pixels */
 typedef struct s_line
 {
 	t_coord		p0;
@@ -63,8 +90,8 @@ typedef struct s_polygon
 	uint32_t	color;
 }	t_polygon;
 
-/* graphx_common.c */
-void	ft_error(void);
+/* graphx_utils.c */
+void	graphx_error(void);
 void	put_pixel_safe(mlx_image_t *img, int x, int y, uint32_t color);
 void	quick_sort_doubles(double *arr, int low, int high);
 

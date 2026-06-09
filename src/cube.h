@@ -6,7 +6,7 @@
 /*   By: adeestev <adeestev@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/21 15:19:30 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/02 15:10:47 by adeestev         ###   ########.fr       */
+/*   Updated: 2026/06/08 21:23:12 by dchernik         ###   ########.fr       */
 /*   Updated: 2026/06/05 20:24:05 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -14,8 +14,11 @@
 #ifndef CUBE_H
 # define CUBE_H
 
+#include "libft.h"
+#include "graphx.h"
+#include "minimap.h"
+
 # include <stdint.h>
-# include <sys/types.h>
 
 typedef struct s_texture	t_texture;
 
@@ -47,5 +50,10 @@ typedef struct s_texture
 	const char	*west_path;
 }	t_texture;
 
+/* cube.c */
+t_cube	*parser_init(int argc, char **argv);
+int		graphx_init(t_cube *cube);
+void	game_loop(void *param);
+void	clear_image(mlx_image_t *img, uint32_t color);
 
 #endif

@@ -1,0 +1,1 @@
+main.c cube.c player.c cube.h minimap.h minimap.c minimap_walls.c minimap_utils.c

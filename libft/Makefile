@@ -37,7 +37,7 @@ BONUS_OBJS=ft_lstnew_bonus.o ft_lstsize_bonus.o ft_lstadd_front_bonus.o \
 $(NAME) : $(MAIN_OBJS)
 	ar rcs $(NAME) $(MAIN_OBJS)
 
-bonus : $(BONUS_OBJS)
+bonus : $(NAME) $(BONUS_OBJS)
 	ar rcs $(NAME) $(BONUS_OBJS)
 
 all : $(NAME)
