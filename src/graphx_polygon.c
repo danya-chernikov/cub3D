@@ -6,7 +6,7 @@
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 19:11:55 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/05 13:18:17 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/08 21:01:57 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,15 @@
 int	polygon_init(t_polygon *poly, int vert_num)
 {
 	if (vert_num < 3)
-		return (COMMON_FAILURE);
+		return (0);
 	poly->vert_num = vert_num;
 	poly->vertices = malloc(vert_num * sizeof(t_coord));
 	if (!poly->vertices)
 	{
 		perror("malloc");
-		return (COMMON_FAILURE);
+		return (0);
 	}
-	return (COMMON_SUCCESS);
+	return (1);
 }
 
 void	polygon_free(t_polygon *poly)
