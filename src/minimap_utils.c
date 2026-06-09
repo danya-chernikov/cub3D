@@ -6,7 +6,7 @@
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 18:53:05 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/08 20:59:30 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/09 17:06:16 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,35 +38,6 @@ int	in_minimap(t_minimap *minimap, int x, int y)
 	if (y >= minimap->pos.y + minimap->size)
 		return (false);
 	return (true);
-}
-
-/* ============================================================ */
-/* Checks whether the map cell at coordinates (x, y)
- * should be treated as a wall. Cells outside the map
- * and spaces are also treated as walls */
-int	map_cell_is_wall(t_cube *cube, int x, int y)
-{
-	if (y < 0 || y >= cube->map_height)
-		return (true);
-	if (x < 0 || x >= map_row_len(cube->map[y]))
-		return (true);
-	if (cube->map[y][x] == '1')
-		return (true);
-	if (cube->map[y][x] == ' ')
-		return (true);
-	return (false);
-}
-
-/* Returns the length of a map row.
- * (Our map easily may be non-rectangular) */
-int	map_row_len(u_char *row)
-{
-	int	len;
-
-	len = 0;
-	while (row && row[len])
-		++len;
-	return (len);
 }
 
 /* ============================================================ */

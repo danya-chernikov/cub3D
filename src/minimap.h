@@ -6,7 +6,7 @@
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 15:06:55 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/08 21:08:19 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/09 17:46:43 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ typedef struct s_minimap
 	uint32_t	player_color;
 }	t_minimap;
 
-/* Helper structure that represents a rectangle
- * for drawing a minimap */
+/* Helper structure that represents
+ * a rectangle for drawing a minimap */
 typedef struct s_rect
 {
 	t_coord		pos;
@@ -54,15 +54,17 @@ void	minimap_draw_player(mlx_image_t *img, t_cube *cube);
 void	minimap_draw_background(mlx_image_t *img, t_minimap *minimap);
 void	minimap_fill_rect(mlx_image_t *img, t_minimap *minimap, t_rect r);
 
-/* minimap2.c */
+/* minimap_walls.c */
+void	minimap_draw_walls(mlx_image_t *img, t_cube *cube);
 void	minimap_draw_wall(mlx_image_t *img, t_cube *cube, int mx, int my);
+int		map_cell_is_wall(t_cube *cube, int x, int y);
+int		map_cell_is_visible_wall(t_cube *cube, int x, int y);
+int		map_row_len(u_char *row);
 
 /* minimap_utils.c */
 void	minimap_put_pixel(mlx_image_t *img, t_minimap *minimap,
 	int x, int y, uint32_t color);
 int		in_minimap(t_minimap *minimap, int x, int y);
-int		map_cell_is_wall(t_cube *cube, int x, int y);
-int		map_row_len(u_char *row);
 t_coord	map_cell_to_minimap(t_cube *cube, int mx, int my);
 
 #endif

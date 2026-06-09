@@ -6,7 +6,7 @@
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 15:06:45 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/08 20:49:15 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/09 17:35:03 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	minimap_init(t_cube *cube, t_coord pos)
 void	minimap_draw(mlx_image_t *img, t_cube *cube)
 {
 	minimap_draw_background(img, &cube->minimap);
-	//minimap_draw_walls(img, cube);
+	minimap_draw_walls(img, cube);
 	minimap_draw_player(img, cube);
 }
 
@@ -62,7 +62,7 @@ void	minimap_fill_rect(mlx_image_t *img, t_minimap *minimap, t_rect r)
 	int	y;
 
 	y = r.pos.y;
-	while (y < r.pos.x + r.h)
+	while (y < r.pos.y + r.h)
 	{
 		x = r.pos.x;
 		while (x < r.pos.x + r.w)

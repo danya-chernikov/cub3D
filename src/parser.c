@@ -6,7 +6,7 @@
 /*   By: adeestev <adeestev@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/16 14:52:43 by adeestev          #+#    #+#             */
-/*   Updated: 2026/06/07 20:11:29 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/09 18:23:30 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,6 +139,8 @@ int	parse_cub_file(const char *filename, t_cube *cube)
 		return (print_error("Missing map in file"), free_parse_data(&data), 0);
 	if (!build_map_array(cube, &data) || !validate_map(cube, &data))
 		return (free_parse_data(&data), 0);
+	cube->map_width = data.map_width;
+	cube->map_height = data.map_height;
 	free_parse_data(&data);
 	return (1);
 }

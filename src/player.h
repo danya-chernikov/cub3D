@@ -4,7 +4,9 @@
 # include "libft.h"
 # include "graphx.h" /* For t_dcoord */
 
-# define PLAYER_RADIUS	5 /* in px */
+# define PLAYER_RADIUS		5 /* in px */
+# define PLAYER_COL_RADIUS	0.18
+# define PLAYER_SPEED		0.05
 
 typedef struct s_cube	t_cube;
 
