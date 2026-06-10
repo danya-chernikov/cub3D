@@ -1,13 +1,13 @@
-NO ./textures/no.png
+NO ./textures/no.xpm
 
-SO ./textures/so.png
-
-
-WE ./textures/we.png
+SO ./textures/so.xpm
 
 
+WE ./textures/we.xpm
 
-EA ./textures/ea.png
+
+
+EA ./textures/ea.xpm
 
 
 F 220,100,0

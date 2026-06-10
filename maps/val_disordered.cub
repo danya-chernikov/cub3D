@@ -1,14 +1,14 @@
-SO ./textures/so.png
+SO ./textures/so.xpm
 
-EA ./textures/ea.png
+EA ./textures/ea.xpm
 
 F 220,100,0
 
-NO ./textures/no.png
+NO ./textures/no.xpm
 
 C 225,30,0
 
-WE ./textures/we.png
+WE ./textures/we.xpm
 
         1111111111111111111111111
         1000000000110000000000001
