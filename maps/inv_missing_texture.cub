@@ -1,6 +1,6 @@
-SO ./textures/so.png
-WE ./textures/we.png
-EA ./textures/ea.png
+SO ./textures/so.xpm
+WE ./textures/we.xpm
+EA ./textures/ea.xpm
 
 F 220,100,0
 C 225,30,0
