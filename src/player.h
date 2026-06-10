@@ -30,4 +30,8 @@ void	player_init(t_cube *cube);
 int		is_player_spawn(u_char c);
 void	set_player_spawn(t_cube *cube, int x, int y);
 
+/* player2.c */
+void	player_move(t_cube *cube, double dx, double dy);
+void	player_handle_input(t_cube *cube);
+
 #endif

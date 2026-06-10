@@ -6,7 +6,7 @@
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/21 15:19:23 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/08 21:49:50 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/10 15:14:58 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	game_loop(void *param)
 
 	cube = param;
 	clear_image(cube->gfx.img, COLOR_BLUISH);
-	//player_handle_input(cube);
+	player_handle_input(cube);
 	minimap_draw(cube->gfx.img, cube);
 }
 

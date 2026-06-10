@@ -6,7 +6,7 @@
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 15:53:27 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/09 18:07:25 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/10 13:37:06 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	player_init(t_cube *cube)
 	}
 }
 
-int	is_player_spawn(u_char c)
+int	is_player_spawn(t_uchar c)
 {
 	if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
 		return (true);

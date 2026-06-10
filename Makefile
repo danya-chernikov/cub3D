@@ -6,7 +6,7 @@
 #    By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/06/08 20:13:09 by dchernik          #+#    #+#              #
-#    Updated: 2026/06/08 21:21:10 by dchernik         ###   ########.fr        #
+#    Updated: 2026/06/10 15:13:33 by dchernik         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ OBJ_PATH=obj/
 PARSER_SRCS=parser.c parse_map.c parse_validation.c \
 			parse_color.c parse_elements.c parser_utils.c
 
-RENDER_SRCS=cube.c player.c error.c
+RENDER_SRCS=cube.c player.c player2.c error.c
 
 MINIMAP_SRCS=minimap.c minimap_walls.c minimap_utils.c
 
@@ -154,6 +154,12 @@ $(OBJ_PATH)/player.o: $(SRC_PATH)/player.c $(SRC_PATH)/cube.h \
 	$(MLX_DIR)/include/MLX42/MLX42.h
 	mkdir -p $(OBJ_PATH)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $(SRC_PATH)/player.c -o $(OBJ_PATH)/player.o
+
+$(OBJ_PATH)/player2.o: $(SRC_PATH)/player2.c $(SRC_PATH)/cube.h \
+	$(LIBFT_PATH)/libft.h $(VECTOR_PATH)/vector.h \
+	$(MLX_DIR)/include/MLX42/MLX42.h
+	mkdir -p $(OBJ_PATH)
+	$(CC) $(CFLAGS) $(INCLUDES) -c $(SRC_PATH)/player2.c -o $(OBJ_PATH)/player2.o
 
 $(OBJ_PATH)/error.o: $(SRC_PATH)/error.c $(SRC_PATH)/error.h \
 	$(LIBFT_PATH)/libft.h $(VECTOR_PATH)/vector.h \

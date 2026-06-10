@@ -6,7 +6,7 @@
 /*   By: adeestev <adeestev@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 18:40:28 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/10 12:10:11 by adeestev         ###   ########.fr       */
+/*   Updated: 2026/06/10 13:34:38 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <sys/stat.h>
 # include <stdbool.h>
 
-typedef unsigned char	u_char;
+typedef unsigned char	t_uchar;
 
 # define COMMON_SUCCESS	1
 # define COMMON_FAILURE	0

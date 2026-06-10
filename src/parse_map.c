@@ -6,7 +6,7 @@
 /*   By: adeestev <adeestev@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/20 13:11:52 by adeestev          #+#    #+#             */
-/*   Updated: 2026/06/10 11:46:48 by adeestev         ###   ########.fr       */
+/*   Updated: 2026/06/10 13:36:46 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,14 +59,14 @@ copies characters from the linked list into a row of the final 2D array and
 pads any remaining width with space characters (this force map lines into a
 perfect rectangle)
 */
-static void	fill_map_row(u_char *row, char *line, int width)
+static void	fill_map_row(t_uchar *row, char *line, int width)
 {
 	int	i;
 
 	i = 0;
 	while (line[i] && line[i] != '\n')
 	{
-		row[i] = (u_char)line[i];
+		row[i] = (t_uchar)line[i];
 		i++;
 	}
 	while (i < width)
@@ -88,14 +88,14 @@ int	build_map_array(t_cube *cube, t_parse_data *data)
 
 	if (data->map_height == 0)
 		return (0);
-	cube->map = ft_calloc(data->map_height + 1, sizeof(u_char *));
+	cube->map = ft_calloc(data->map_height + 1, sizeof(t_uchar *));
 	if (!cube->map)
 		return (0);
 	curr = data->map_lines;
 	i = 0;
 	while (curr)
 	{
-		cube->map[i] = ft_calloc(data->map_width + 1, sizeof(u_char));
+		cube->map[i] = ft_calloc(data->map_width + 1, sizeof(t_uchar));
 		if (!cube->map[i])
 			return (0);
 		fill_map_row(cube->map[i], (char *)curr->content, data->map_width);

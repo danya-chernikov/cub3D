@@ -6,7 +6,7 @@
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 19:00:45 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/09 18:24:37 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/10 13:36:03 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int	map_cell_is_visible_wall(t_cube *cube, int x, int y)
 
 /* Returns the length of a map row.
  * (Our map easily may be non-rectangular) */
-int	map_row_len(u_char *row)
+int	map_row_len(t_uchar *row)
 {
 	int	len;
 
