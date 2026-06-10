@@ -6,7 +6,7 @@
 /*   By: adeestev <adeestev@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/20 13:12:49 by adeestev          #+#    #+#             */
-/*   Updated: 2026/06/07 01:43:13 by adeestev         ###   ########.fr       */
+/*   Updated: 2026/06/10 11:41:25 by adeestev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static int	check_islands(t_cube *c, t_parse_data *d)
 
 	d->vis = ft_calloc(d->map_height, sizeof(char *));
 	if (!d->vis)
-		return (print_error("Memory allocation failed"), 0);
+		return (print_error(MAP_MALLOC_ERR), 0);
 	y = -1;
 	while (++y < d->map_height)
 	{
@@ -76,7 +76,7 @@ static int	check_islands(t_cube *c, t_parse_data *d)
 		while (++x < d->map_width)
 			if (c->map[y][x] != ' ' && !d->vis[y][x])
 				return (free_vis(d->vis, d->map_height),
-					print_error("Disconnected map found"), 0);
+					print_error(MAP_ISLAND_ERR), 0);
 	}
 	return (free_vis(d->vis, d->map_height), 1);
 }
@@ -93,8 +93,8 @@ static int	check_cell(t_cube *c, t_parse_data *d, int x, int y)
 	if (cell != '0' && cell != '1' && cell != ' ' && !is_player(cell))
 	{
 		if ((cell >= 'a' && cell <= 'z') || (cell >= 'A' && cell <= 'Z'))
-			return (print_error("Player's direction is invalid"), 0);
-		return (print_error("Map contains an invalid character"), 0);
+			return (print_error(MAP_PLAYER_DIR_ERR), 0);
+		return (print_error(MAP_INV_CHAR_ERR), 0);
 	}
 	if (is_player(cell))
 	{
@@ -103,7 +103,7 @@ static int	check_cell(t_cube *c, t_parse_data *d, int x, int y)
 		d->py = y;
 	}
 	if ((cell == '0' || is_player(cell)) && !check_neighbors(c, d, x, y))
-		return (print_error("Map is not surrounded by walls"), 0);
+		return (print_error(MAP_OUTLINE_ERR), 0);
 	return (1);
 }
 
@@ -126,6 +126,6 @@ int	validate_map(t_cube *c, t_parse_data *d)
 				return (0);
 	}
 	if (d->player_count != 1)
-		return (print_error("Map must contain exactly one player"), 0);
+		return (print_error(MAP_ONE_PLAYER_ERR), 0);
 	return (check_islands(c, d));
 }

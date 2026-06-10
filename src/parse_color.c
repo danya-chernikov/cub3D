@@ -6,7 +6,7 @@
 /*   By: adeestev <adeestev@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/25 11:29:50 by adeestev          #+#    #+#             */
-/*   Updated: 2026/06/07 00:36:31 by adeestev         ###   ########.fr       */
+/*   Updated: 2026/06/10 12:13:56 by adeestev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,15 +48,15 @@ int	parse_color(char *line, uint32_t *color)
 	int	b;
 
 	if (!get_rgb_val(&line, &r) || *line != ',')
-		return (print_error("Color values are out of range"), 0);
+		return (print_error(MAP_INV_COL_RANGE_ERR), 0);
 	line++;
 	if (!get_rgb_val(&line, &g) || *line != ',')
-		return (print_error("Color values are out of range"), 0);
+		return (print_error(MAP_INV_COL_RANGE_ERR), 0);
 	line++;
 	if (!get_rgb_val(&line, &b))
-		return (print_error("Color values are out of range"), 0);
+		return (print_error(MAP_INV_COL_RANGE_ERR), 0);
 	if (*line != '\n' && *line != '\0' && *line != '\r')
-		return (print_error("Color values are out of range"), 0);
+		return (print_error(MAP_INV_COL_RANGE_ERR), 0);
 	*color = (r << 16) | (g << 8) | b;
 	return (1);
 }

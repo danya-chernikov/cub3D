@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
+/*   By: adeestev <adeestev@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 18:40:28 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/08 18:37:47 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/10 12:10:11 by adeestev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 
 typedef unsigned char	u_char;
 
-#define COMMON_SUCCESS	1
-#define COMMON_FAILURE	0
+# define COMMON_SUCCESS	1
+# define COMMON_FAILURE	0
 
 /* ==================== get_next_line() DEFINITIONS  ==================== */
 # ifndef GNL_BUFFER_SIZE
