@@ -6,7 +6,7 @@
 /*   By: adeestev <adeestev@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/16 14:52:43 by adeestev          #+#    #+#             */
-/*   Updated: 2026/06/09 18:23:30 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/10 12:19:16 by adeestev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ free uninitialized memory if parsing fails early)
 */
 static void	init_parse_data(t_parse_data *data)
 {
-	/* I guess here we could use just:
-	 * ft_bzero(data, sizeof(*data)); */
 	data->fd = -1;
 	data->line = NULL;
 	data->elements_found = 0;
@@ -74,7 +72,7 @@ static void	handle_line(t_cube *cube, t_parse_data *data)
 	{
 		if (data->map_started || data->map_ended)
 		{
-			print_error("Map is not last element in file");
+			print_error(MAP_NOT_LAST_ERR);
 			data->error_flag = true;
 		}
 		else if (!parse_element(data->line, cube, data))
@@ -113,7 +111,7 @@ static int	read_file_lines(t_cube *cube, t_parse_data *data)
 the main parsing part:
 - creates temporary workspace and initialize it
 - verify extension and open file safely
-- extract elements and map lines into the linked list.
+- extract elements and map lines into the linked list
 - ensure 6 elements and map content are present
 - convert the linked list into a 2D array
 - run validations (walls, characters, flood-fill)
@@ -125,18 +123,18 @@ int	parse_cub_file(const char *filename, t_cube *cube)
 
 	init_parse_data(&data);
 	if (!check_extension(filename))
-		return (print_error("Invalid file extension. Expected .cub"), 0);
+		return (print_error(MAP_INV_EXT_ERR), 0);
 	data.fd = open(filename, O_RDONLY);
 	if (data.fd < 0)
-		return (print_error("Cannot open file"), 0);
+		return (print_error(MAP_OPEN_ERR), 0);
 	if (!read_file_lines(cube, &data))
 		return (free_parse_data(&data), 0);
 	if (!data.has_content)
-		return (print_error("No content in file"), free_parse_data(&data), 0);
+		return (print_error(MAP_NO_CONT_ERR), free_parse_data(&data), 0);
 	if (!check_all_elements_found(&data, cube))
 		return (free_parse_data(&data), 0);
 	if (data.map_height == 0)
-		return (print_error("Missing map in file"), free_parse_data(&data), 0);
+		return (print_error(MAP_MISS_MAP_ERR), free_parse_data(&data), 0);
 	if (!build_map_array(cube, &data) || !validate_map(cube, &data))
 		return (free_parse_data(&data), 0);
 	cube->map_width = data.map_width;

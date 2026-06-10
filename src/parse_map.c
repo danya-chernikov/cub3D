@@ -6,7 +6,7 @@
 /*   By: adeestev <adeestev@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/20 13:11:52 by adeestev          #+#    #+#             */
-/*   Updated: 2026/06/07 01:09:02 by adeestev         ###   ########.fr       */
+/*   Updated: 2026/06/10 11:46:48 by adeestev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,7 @@ void	handle_map_line(t_cube *cube, t_parse_data *data)
 	}
 	else if (data->map_ended)
 	{
-		print_error("Map is not last element in file");
+		print_error(MAP_NOT_LAST_ERR);
 		data->error_flag = true;
 	}
 	else
