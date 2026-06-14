@@ -6,7 +6,7 @@
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/21 15:19:23 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/10 15:14:58 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/10 20:01:58 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,13 @@ t_cube	*parser_init(int argc, char **argv)
 
 int	graphx_init(t_cube *cube)
 {
+	cube->gfx.win_width = WIN_WIDTH;
+	cube->gfx.win_height = WIN_HEIGHT;
 	cube->gfx.mlx = mlx_init(WIN_WIDTH, WIN_HEIGHT, "cub3D", true);
 	if (!cube->gfx.mlx)
 		return (COMMON_FAILURE);
-	cube->gfx.img = mlx_new_image(cube->gfx.mlx, WIN_WIDTH, WIN_HEIGHT);
+	cube->gfx.img = mlx_new_image(cube->gfx.mlx,
+		cube->gfx.win_width, cube->gfx.win_height);
 	if (!cube->gfx.img)
 		return (COMMON_FAILURE);
 	if (mlx_image_to_window(cube->gfx.mlx, cube->gfx.img, 0, 0) < 0)

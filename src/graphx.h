@@ -6,7 +6,7 @@
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 19:11:49 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/08 21:49:18 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/10 19:55:53 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ typedef struct s_graph_data
 {
 	mlx_t		*mlx;
 	mlx_image_t	*img;
+	int32_t		win_width;
+	int32_t		win_height;
 }	t_graph_data;
 
 /* thick - line's thinkness in pixels */
@@ -94,6 +96,9 @@ typedef struct s_polygon
 void	graphx_error(void);
 void	put_pixel_safe(mlx_image_t *img, int x, int y, uint32_t color);
 void	quick_sort_doubles(double *arr, int low, int high);
+
+/* graphx_window.c */
+void	graphx_resize_hook(int32_t width, int32_t height, void *param);
 
 /* graphx_line.c */
 void	draw_line(mlx_image_t *img, t_coord p0, t_coord p1, uint32_t color);

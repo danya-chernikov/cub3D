@@ -6,7 +6,7 @@
 /*   By: adeestev <adeestev@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/18 18:59:46 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/08 21:22:17 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/10 19:58:35 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int main(int argc, char **argv)
 	minimap_init(cube, (t_coord){MINIMAP_POS_X, MINIMAP_POS_Y});
 	if (!graphx_init(cube))
 		graphx_error();
+	mlx_resize_hook(cube->gfx.mlx, graphx_resize_hook, cube);
 	mlx_loop_hook(cube->gfx.mlx, game_loop, cube);
 	mlx_loop(cube->gfx.mlx);
 	mlx_terminate(cube->gfx.mlx);

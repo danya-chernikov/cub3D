@@ -6,7 +6,7 @@
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 19:00:45 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/10 13:36:03 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/14 16:08:03 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,22 @@
 
 /* Draws all visible draw tiles around the player. Only the
  * cells that can appear inside the minimap area are checked
- * and rendered */
+ * and rendered.
+ *     half_cells - number of cells checked from the player's
+ *					current cell to each edge of the map
+ *					(radius of the visible minimap area).
+ *					We add 2 as a buffer
+ * More info:
+ * https://www.figma.com/design/MOGITOdwaCYQ11DAqgljlT/cub3D?
+ * node-id=178-4&t=5nIXqabU7V6JhGvL-0*/
 void	minimap_draw_walls(mlx_image_t *img, t_cube *cube)
 {
 	int	half_cells;
 	int	x;
 	int	y;
-	int	start_y;
 
-	half_cells = cube->minimap.size / cube->minimap.tile_size / 2 + 2;
-	start_y = (int)cube->player.pos.y - half_cells;
-	y = start_y;
+	half_cells = ((cube->minimap.size / 2) / cube->minimap.tile_size) + 2;
+	y = (int)cube->player.pos.y - half_cells;
 	while (y <= (int)cube->player.pos.y + half_cells)
 	{
 		x = (int)cube->player.pos.x - half_cells;

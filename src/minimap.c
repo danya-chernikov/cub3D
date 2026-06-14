@@ -6,7 +6,7 @@
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 15:06:45 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/10 13:34:16 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/10 21:11:49 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,18 +58,17 @@ void	minimap_draw_background(mlx_image_t *img, t_minimap *minimap)
  * clipping every pixel to the minimap area */
 void	minimap_fill_rect(mlx_image_t *img, t_minimap *minimap, t_rect r)
 {
-	int	x;
-	int	y;
+	t_coord	p;
 
-	y = r.pos.y;
-	while (y < r.pos.y + r.h)
+	p.y = r.pos.y;
+	while (p.y < r.pos.y + r.h)
 	{
-		x = r.pos.x;
-		while (x < r.pos.x + r.w)
+		p.x = r.pos.x;
+		while (p.x < r.pos.x + r.w)
 		{
-			minimap_put_pixel(img, minimap, x, y, r.color);
-			++x;
+			minimap_put_pixel(img, minimap, &p, r.color);
+			++p.x;
 		}
-		++y;
+		++p.y;
 	}
 }

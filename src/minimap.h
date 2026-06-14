@@ -6,7 +6,7 @@
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 15:06:55 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/10 13:35:48 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/14 14:54:55 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ int		map_row_len(t_uchar *row);
 
 /* minimap_utils.c */
 void	minimap_put_pixel(mlx_image_t *img, t_minimap *minimap,
-	int x, int y, uint32_t color);
-int		in_minimap(t_minimap *minimap, int x, int y);
+			t_coord *pos, uint32_t color);
+bool	in_minimap(t_minimap *minimap, int x, int y);
 t_coord	map_cell_to_minimap(t_cube *cube, int mx, int my);
 
 #endif

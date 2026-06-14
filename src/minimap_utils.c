@@ -6,7 +6,7 @@
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 18:53:05 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/09 17:06:16 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/11 19:34:51 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,16 @@
 /* Puts a pixel only if it belongs to the minimap area.
  * This clips minimap drawing to its square bounds */
 void	minimap_put_pixel(mlx_image_t *img, t_minimap *minimap,
-	int x, int y, uint32_t color)
+	t_coord *pos, uint32_t color)
 {
-	if (!in_minimap(minimap, x, y))
+	if (!in_minimap(minimap, pos->x, pos->y))
 		return ;
-	put_pixel_safe(img, x, y, color);
+	put_pixel_safe(img, pos->x, pos->y, color);
 }
 
 /* Check if a point with coordinates x and y is
- * inside the minimap's area. If a point is inside
- * the map returns true */
-int	in_minimap(t_minimap *minimap, int x, int y)
+ * inside the minimap's area */
+bool	in_minimap(t_minimap *minimap, int x, int y)
 {
 	if (x < minimap->pos.x || y < minimap->pos.y)
 		return (false);
@@ -45,8 +44,7 @@ int	in_minimap(t_minimap *minimap, int x, int y)
  * inside our minimap:
  * map cell coordinates -> screen coordinates on minimap.
  * The player is kept in the center of the minimap, so
- * the map appears to scroll around the player (at least
- * I wanna acheive this..)
+ * the map appears to scroll around the player
  *     mx - x coordinate on the minimap;
  *     my - y coordinate on the minimap. */
 t_coord	map_cell_to_minimap(t_cube *cube, int mx, int my)

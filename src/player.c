@@ -6,10 +6,11 @@
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 15:53:27 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/10 13:37:06 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/10 17:32:40 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "player.h"
 #include "cube.h"
 
 /* Finds the player's spawn position in the map */
