@@ -6,7 +6,7 @@
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/21 15:19:23 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/10 20:01:58 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/15 16:15:30 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,16 @@ void	game_loop(void *param)
 	t_cube	*cube;
 
 	cube = param;
+	handle_window_input(cube);
 	clear_image(cube->gfx.img, COLOR_BLUISH);
 	player_handle_input(cube);
 	minimap_draw(cube->gfx.img, cube);
+}
+
+void	handle_window_input(t_cube *cube)
+{
+	if (mlx_is_key_down(cube->gfx.mlx, MLX_KEY_ESCAPE))
+		mlx_close_window(cube->gfx.mlx);
 }
 
 /* Fills the entire image with one color. This isused
