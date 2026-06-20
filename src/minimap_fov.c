@@ -6,7 +6,7 @@
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 13:56:40 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/20 02:37:35 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/20 17:32:37 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ t_coord	minimap_ray_end(t_cube * cube, double angle)
 	if (t.x < t.y)
 	{
 		end.x = center.x + (int)round(dir_x * t.x);
-		end.y = center.y + (int)round(dir_y * t.y);
+		end.y = center.y + (int)round(dir_y * t.x);
 	}
 	else
 	{
