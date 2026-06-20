@@ -6,7 +6,7 @@
 #    By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/06/08 20:13:09 by dchernik          #+#    #+#              #
-#    Updated: 2026/06/10 20:04:08 by dchernik         ###   ########.fr        #
+#    Updated: 2026/06/20 02:15:50 by dchernik         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,7 @@ PARSER_SRCS=parser.c parse_map.c parse_validation.c \
 RENDER_SRCS=cube.c player.c player_collision.c \
 			player_movement.c error.c
 
-MINIMAP_SRCS=minimap.c minimap_walls.c minimap_utils.c
+MINIMAP_SRCS=minimap.c minimap_walls.c minimap_fov.c minimap_utils.c
 
 GRAPHX_SRCS=graphx_utils.c graphx_window.c \
 			graphx_line.c graphx_line_thick.c \
@@ -197,6 +197,14 @@ $(OBJ_PATH)/minimap_walls.o: $(SRC_PATH)/minimap_walls.c $(SRC_PATH)/minimap.h \
 	mkdir -p $(OBJ_PATH)
 	$(CC) $(CFLAGS) $(INCLUDES) \
 	-c $(SRC_PATH)/minimap_walls.c -o $(OBJ_PATH)/minimap_walls.o
+
+$(OBJ_PATH)/minimap_fov.o: $(SRC_PATH)/minimap_fov.c $(SRC_PATH)/minimap.h \
+	$(SRC_PATH)/cube.h \
+	$(LIBFT_PATH)/libft.h $(VECTOR_PATH)/vector.h \
+	$(MLX_DIR)/include/MLX42/MLX42.h
+	mkdir -p $(OBJ_PATH)
+	$(CC) $(CFLAGS) $(INCLUDES) \
+	-c $(SRC_PATH)/minimap_fov.c -o $(OBJ_PATH)/minimap_fov.o
 
 $(OBJ_PATH)/minimap_utils.o: $(SRC_PATH)/minimap_utils.c $(SRC_PATH)/minimap.h \
 	$(SRC_PATH)/cube.h \

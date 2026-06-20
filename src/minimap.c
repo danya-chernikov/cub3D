@@ -6,7 +6,7 @@
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 15:06:45 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/10 21:11:49 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/19 13:55:10 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	minimap_draw(mlx_image_t *img, t_cube *cube)
 {
 	minimap_draw_background(img, &cube->minimap);
 	minimap_draw_walls(img, cube);
+	minimap_draw_fov(img, cube);
 	minimap_draw_player(img, cube);
 }
 

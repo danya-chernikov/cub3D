@@ -6,7 +6,7 @@
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 18:53:05 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/11 19:34:51 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/20 02:22:13 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,24 @@ t_coord	map_cell_to_minimap(t_cube *cube, int mx, int my)
 	minimap = &cube->minimap;
 	dx = (mx - cube->player.pos.x) * minimap->tile_size;
 	dy = (my - cube->player.pos.y) * minimap->tile_size;
+	screen_coords.x = minimap->pos.x + minimap->size / 2 + (int)round(dx);
+	screen_coords.y = minimap->pos.y + minimap->size / 2 + (int)round(dy);
+	return (screen_coords);
+}
+
+/* Same as map_cell_to_minimap(), but works with double coordinates,
+ * i.e. with any point in the world, not only with integer map cells.
+ * This makes it more generic */
+t_coord	world_to_minimap(t_cube *cube, double wx, double wy)
+{
+	t_coord		screen_coords;
+	t_minimap	*minimap;
+	double		dx;
+	double		dy;
+
+	minimap = &cube->minimap;
+	dx = (wx - cube->player.pos.x) * minimap->tile_size;
+	dy = (wy - cube->player.pos.y) * minimap->tile_size;
 	screen_coords.x = minimap->pos.x + minimap->size / 2 + (int)round(dx);
 	screen_coords.y = minimap->pos.y + minimap->size / 2 + (int)round(dy);
 	return (screen_coords);

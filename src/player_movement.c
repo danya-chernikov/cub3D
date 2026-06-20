@@ -6,7 +6,7 @@
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 17:32:41 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/12 15:47:27 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/19 13:11:58 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,23 @@ void	player_handle_input(t_cube *cube)
 		dx -= 1;
 	if (mlx_is_key_down(cube->gfx.mlx, MLX_KEY_D))
 		dx += 1;
+	if (mlx_is_key_down(cube->gfx.mlx, MLX_KEY_LEFT))
+		cube->player.angle -= PLAYER_ROT_SPEED;
+	if (mlx_is_key_down(cube->gfx.mlx, MLX_KEY_RIGHT))
+		cube->player.angle += PLAYER_ROT_SPEED;
 	len = sqrt(dx * dx + dy * dy);
 	if (len > 0)
 		player_move(cube, (dx / len) * cube->player.speed,
 			(dy / len) * cube->player.speed);
+}
+
+double	player_spawn_angle(t_uchar c)
+{
+	if (c == 'N')
+		return (-PI / 2.0);
+	if (c == 'S')
+		return (PI / 2.0);
+	if (c == 'W')
+		return (PI);
+	return (0.0);
 }

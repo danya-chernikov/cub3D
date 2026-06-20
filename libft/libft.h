@@ -6,7 +6,7 @@
 /*   By: adeestev <adeestev@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 18:40:28 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/10 13:34:38 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/20 01:31:39 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef unsigned char	t_uchar;
 
 # define COMMON_SUCCESS	1
 # define COMMON_FAILURE	0
+# define INF			1e30
 
 /* ==================== get_next_line() DEFINITIONS  ==================== */
 # ifndef GNL_BUFFER_SIZE
