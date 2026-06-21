@@ -5,15 +5,13 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/10 17:32:41 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/19 13:11:58 by dchernik         ###   ########.fr       */
+/*   Created: 2026/06/21 01:13:03 by dchernik          #+#    #+#             */
+/*   Updated: 2026/06/21 01:18:13 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "player.h"
 #include "cube.h"
-
-#include <math.h> /* For sqrt() */
 
 /* Moves the player by the given delta if the movement
  * does not cause a collision with a wall. The x and
@@ -30,48 +28,4 @@ void	player_move(t_cube *cube, double dx, double dy)
 		cube->player.pos.x = new_x;
 	if (!player_hits_wall(cube, cube->player.pos.x, new_y))
 		cube->player.pos.y = new_y;
-}
-
-/* Reads the current WASD keyboard state and
- * moves the player accordingly. Diagonal
- * movement is normalized so that it is not
- * faster than horizontal or vertical movement.
- * How do we normalize:
- * https://www.figma.com/design/MOGITOdwaCYQ11DAqgljlT/cub3D?
- * node-id=168-3&t=cIe9W1KPA9g55vKf-0 */
-void	player_handle_input(t_cube *cube)
-{
-	double	dx;
-	double	dy;
-	double	len;
-
-	dx = 0;
-	dy = 0;
-	if (mlx_is_key_down(cube->gfx.mlx, MLX_KEY_W))
-		dy -= 1;
-	if (mlx_is_key_down(cube->gfx.mlx, MLX_KEY_S))
-		dy += 1;
-	if (mlx_is_key_down(cube->gfx.mlx, MLX_KEY_A))
-		dx -= 1;
-	if (mlx_is_key_down(cube->gfx.mlx, MLX_KEY_D))
-		dx += 1;
-	if (mlx_is_key_down(cube->gfx.mlx, MLX_KEY_LEFT))
-		cube->player.angle -= PLAYER_ROT_SPEED;
-	if (mlx_is_key_down(cube->gfx.mlx, MLX_KEY_RIGHT))
-		cube->player.angle += PLAYER_ROT_SPEED;
-	len = sqrt(dx * dx + dy * dy);
-	if (len > 0)
-		player_move(cube, (dx / len) * cube->player.speed,
-			(dy / len) * cube->player.speed);
-}
-
-double	player_spawn_angle(t_uchar c)
-{
-	if (c == 'N')
-		return (-PI / 2.0);
-	if (c == 'S')
-		return (PI / 2.0);
-	if (c == 'W')
-		return (PI);
-	return (0.0);
 }

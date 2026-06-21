@@ -6,7 +6,7 @@
 #    By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/06/08 20:13:09 by dchernik          #+#    #+#              #
-#    Updated: 2026/06/20 02:15:50 by dchernik         ###   ########.fr        #
+#    Updated: 2026/06/21 01:19:00 by dchernik         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,8 @@ OBJ_PATH=obj/
 PARSER_SRCS=parser.c parse_map.c parse_validation.c \
 			parse_color.c parse_elements.c parser_utils.c
 
-RENDER_SRCS=cube.c player.c player_collision.c \
+RENDER_SRCS=cube.c render.c raycast.c raycast_setters.c \
+			player.c player_collision.c player_input.c \
 			player_movement.c error.c
 
 MINIMAP_SRCS=minimap.c minimap_walls.c minimap_fov.c minimap_utils.c
@@ -145,11 +146,31 @@ $(OBJ_PATH)/parser_utils.o: $(SRC_PATH)/parser_utils.c $(SRC_PATH)/parser.h \
 # ================================== RENDER  ==================================
 
 $(OBJ_PATH)/cube.o: $(SRC_PATH)/cube.c $(SRC_PATH)/cube.h \
-	$(SRC_PATH)/minimap.h $(SRC_PATH)/parser.h $(SRC_PATH)/error.h \
-	$(LIBFT_PATH)/libft.h $(VECTOR_PATH)/vector.h \
+	$(SRC_PATH)/minimap.h $(SRC_PATH)/parser.h $(SRC_PATH)/render.h \
+	$(SRC_PATH)/error.h $(LIBFT_PATH)/libft.h $(VECTOR_PATH)/vector.h \
 	$(MLX_DIR)/include/MLX42/MLX42.h
 	mkdir -p $(OBJ_PATH)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $(SRC_PATH)/cube.c -o $(OBJ_PATH)/cube.o
+
+$(OBJ_PATH)/render.o: $(SRC_PATH)/render.c $(SRC_PATH)/render.h \
+	$(SRC_PATH)/cube.h $(LIBFT_PATH)/libft.h $(VECTOR_PATH)/vector.h \
+	$(MLX_DIR)/include/MLX42/MLX42.h
+	mkdir -p $(OBJ_PATH)
+	$(CC) $(CFLAGS) $(INCLUDES) -c $(SRC_PATH)/render.c -o $(OBJ_PATH)/render.o
+
+$(OBJ_PATH)/raycast.o: $(SRC_PATH)/raycast.c $(SRC_PATH)/render.h \
+	$(SRC_PATH)/cube.h $(LIBFT_PATH)/libft.h $(VECTOR_PATH)/vector.h \
+	$(MLX_DIR)/include/MLX42/MLX42.h
+	mkdir -p $(OBJ_PATH)
+	$(CC) $(CFLAGS) $(INCLUDES) \
+	-c $(SRC_PATH)/raycast.c -o $(OBJ_PATH)/raycast.o
+
+$(OBJ_PATH)/raycast_setters.o: $(SRC_PATH)/raycast_setters.c \
+	$(SRC_PATH)/render.h $(SRC_PATH)/cube.h $(LIBFT_PATH)/libft.h \
+	$(VECTOR_PATH)/vector.h $(MLX_DIR)/include/MLX42/MLX42.h
+	mkdir -p $(OBJ_PATH)
+	$(CC) $(CFLAGS) $(INCLUDES) \
+	-c $(SRC_PATH)/raycast_setters.c -o $(OBJ_PATH)/raycast_setters.o
 
 $(OBJ_PATH)/player.o: $(SRC_PATH)/player.c $(SRC_PATH)/cube.h \
 	$(LIBFT_PATH)/libft.h $(VECTOR_PATH)/vector.h \
@@ -164,6 +185,14 @@ $(OBJ_PATH)/player_collision.o: $(SRC_PATH)/player_collision.c \
 	mkdir -p $(OBJ_PATH)
 	$(CC) $(CFLAGS) $(INCLUDES) \
 	-c $(SRC_PATH)/player_collision.c -o $(OBJ_PATH)/player_collision.o
+
+$(OBJ_PATH)/player_input.o: $(SRC_PATH)/player_input.c \
+	$(SRC_PATH)/player.h $(SRC_PATH)/cube.h \
+	$(LIBFT_PATH)/libft.h $(VECTOR_PATH)/vector.h \
+	$(MLX_DIR)/include/MLX42/MLX42.h
+	mkdir -p $(OBJ_PATH)
+	$(CC) $(CFLAGS) $(INCLUDES) \
+	-c $(SRC_PATH)/player_input.c -o $(OBJ_PATH)/player_input.o
 
 $(OBJ_PATH)/player_movement.o: $(SRC_PATH)/player_movement.c \
 	$(SRC_PATH)/player.h $(SRC_PATH)/cube.h \

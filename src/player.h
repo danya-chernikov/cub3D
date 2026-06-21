@@ -6,7 +6,7 @@
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 17:32:49 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/20 02:21:12 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/21 01:15:16 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,18 +43,25 @@ typedef struct s_player
 }	t_player;
 
 /* player.c */
-void	player_init(t_cube *cube);
-int		is_player_spawn(u_char c);
-void	set_player_spawn(t_cube *cube, int x, int y);
+void		player_init(t_cube *cube);
+int			is_player_spawn(u_char c);
+void		set_player_spawn(t_cube *cube, int x, int y);
+double		player_spawn_angle(t_uchar c);
 
 /* player_movement.c */
-void	player_move(t_cube *cube, double dx, double dy);
-void	player_handle_input(t_cube *cube);
-double	player_spawn_angle(t_uchar c);
+void		player_move(t_cube *cube, double dx, double dy);
+
+/* player_input.c */
+void		player_handle_input(t_cube *cube);
+void		player_update_rotation(t_cube *cube);
+t_dcoord	player_dir(t_cube *cube);
+t_dcoord	player_right(t_dcoord dir);
+void		player_add_move(t_cube *cube, t_dcoord *move,
+				t_dcoord dir, t_dcoord right);
 
 /* player_collision.c */
-int		player_hits_wall(t_cube *cube, double x, double y);
-int		circle_hits_tile(double px, double py, double r, t_coord *tile);
-double	clamp_double(double val, double min, double max);
+int			player_hits_wall(t_cube *cube, double x, double y);
+int			circle_hits_tile(double px, double py, double r, t_coord *tile);
+double		clamp_double(double val, double min, double max);
 
 #endif

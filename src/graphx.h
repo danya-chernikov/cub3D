@@ -6,7 +6,7 @@
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 19:11:49 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/10 19:55:53 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/21 02:47:22 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@
 #define COLOR_YELLOW		0xFFFF00FF
 #define COLOR_CYAN			0x00FFFFFF
 #define COLOR_PURPLE		0xFF00FFFF
-#define COLOR_GRAY			0xB7B4B7FF
+#define COLOR_GRAY			0x777777FF
+#define COLOR_LIGHT_GRAY	0xB7B4B7FF
 #define COLOR_BROWN			0x895129FF
 #define COLOR_ORANGE		0xFF6A00FF
 #define COLOR_PINK			0xFF008CFF

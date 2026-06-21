@@ -6,7 +6,7 @@
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/21 15:19:23 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/15 16:15:30 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/20 20:50:51 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "cube.h"
 #include "minimap.h"
 #include "parser.h"
+#include "render.h"
 #include "error.h"
 
 #include <stdio.h>
@@ -69,6 +70,7 @@ void	game_loop(void *param)
 	handle_window_input(cube);
 	clear_image(cube->gfx.img, COLOR_BLUISH);
 	player_handle_input(cube);
+	render_scene(cube);
 	minimap_draw(cube->gfx.img, cube);
 }
 
