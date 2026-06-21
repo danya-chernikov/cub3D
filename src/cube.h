@@ -6,7 +6,7 @@
 /*   By: adeestev <adeestev@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/21 15:19:30 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/08 21:23:12 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/15 16:16:07 by dchernik         ###   ########.fr       */
 /*   Updated: 2026/06/05 20:24:05 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -29,7 +29,7 @@ typedef struct s_cube
 	t_texture		*tex_files;
 	uint32_t		floor_color;
 	uint32_t		ceiling_color;
-	u_char			**map;
+	t_uchar			**map;
 	int				map_width;
 	int				map_height;
 	t_player		player;
@@ -54,6 +54,7 @@ typedef struct s_texture
 t_cube	*parser_init(int argc, char **argv);
 int		graphx_init(t_cube *cube);
 void	game_loop(void *param);
+void	handle_window_input(t_cube *cube);
 void	clear_image(mlx_image_t *img, uint32_t color);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/06/08 20:13:09 by dchernik          #+#    #+#              #
-#    Updated: 2026/06/08 21:21:10 by dchernik         ###   ########.fr        #
+#    Updated: 2026/06/21 01:19:00 by dchernik         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,13 +38,16 @@ OBJ_PATH=obj/
 PARSER_SRCS=parser.c parse_map.c parse_validation.c \
 			parse_color.c parse_elements.c parser_utils.c
 
-RENDER_SRCS=cube.c player.c error.c
+RENDER_SRCS=cube.c render.c raycast.c raycast_setters.c \
+			player.c player_collision.c player_input.c \
+			player_movement.c error.c
 
-MINIMAP_SRCS=minimap.c minimap_walls.c minimap_utils.c
+MINIMAP_SRCS=minimap.c minimap_walls.c minimap_fov.c minimap_utils.c
 
-GRAPHX_SRCS=graphx_line.c graphx_line_thick.c \
+GRAPHX_SRCS=graphx_utils.c graphx_window.c \
+			graphx_line.c graphx_line_thick.c \
 			graphx_polygon.c graphx_polygon2.c \
-			graphx_circle.c graphx_utils.c
+			graphx_circle.c
 
 SRCS=main.c $(PARSER_SRCS) $(RENDER_SRCS) $(MINIMAP_SRCS) $(GRAPHX_SRCS)
 
@@ -143,17 +146,61 @@ $(OBJ_PATH)/parser_utils.o: $(SRC_PATH)/parser_utils.c $(SRC_PATH)/parser.h \
 # ================================== RENDER  ==================================
 
 $(OBJ_PATH)/cube.o: $(SRC_PATH)/cube.c $(SRC_PATH)/cube.h \
-	$(SRC_PATH)/minimap.h $(SRC_PATH)/parser.h $(SRC_PATH)/error.h \
-	$(LIBFT_PATH)/libft.h $(VECTOR_PATH)/vector.h \
+	$(SRC_PATH)/minimap.h $(SRC_PATH)/parser.h $(SRC_PATH)/render.h \
+	$(SRC_PATH)/error.h $(LIBFT_PATH)/libft.h $(VECTOR_PATH)/vector.h \
 	$(MLX_DIR)/include/MLX42/MLX42.h
 	mkdir -p $(OBJ_PATH)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $(SRC_PATH)/cube.c -o $(OBJ_PATH)/cube.o
+
+$(OBJ_PATH)/render.o: $(SRC_PATH)/render.c $(SRC_PATH)/render.h \
+	$(SRC_PATH)/cube.h $(LIBFT_PATH)/libft.h $(VECTOR_PATH)/vector.h \
+	$(MLX_DIR)/include/MLX42/MLX42.h
+	mkdir -p $(OBJ_PATH)
+	$(CC) $(CFLAGS) $(INCLUDES) -c $(SRC_PATH)/render.c -o $(OBJ_PATH)/render.o
+
+$(OBJ_PATH)/raycast.o: $(SRC_PATH)/raycast.c $(SRC_PATH)/render.h \
+	$(SRC_PATH)/cube.h $(LIBFT_PATH)/libft.h $(VECTOR_PATH)/vector.h \
+	$(MLX_DIR)/include/MLX42/MLX42.h
+	mkdir -p $(OBJ_PATH)
+	$(CC) $(CFLAGS) $(INCLUDES) \
+	-c $(SRC_PATH)/raycast.c -o $(OBJ_PATH)/raycast.o
+
+$(OBJ_PATH)/raycast_setters.o: $(SRC_PATH)/raycast_setters.c \
+	$(SRC_PATH)/render.h $(SRC_PATH)/cube.h $(LIBFT_PATH)/libft.h \
+	$(VECTOR_PATH)/vector.h $(MLX_DIR)/include/MLX42/MLX42.h
+	mkdir -p $(OBJ_PATH)
+	$(CC) $(CFLAGS) $(INCLUDES) \
+	-c $(SRC_PATH)/raycast_setters.c -o $(OBJ_PATH)/raycast_setters.o
 
 $(OBJ_PATH)/player.o: $(SRC_PATH)/player.c $(SRC_PATH)/cube.h \
 	$(LIBFT_PATH)/libft.h $(VECTOR_PATH)/vector.h \
 	$(MLX_DIR)/include/MLX42/MLX42.h
 	mkdir -p $(OBJ_PATH)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $(SRC_PATH)/player.c -o $(OBJ_PATH)/player.o
+
+$(OBJ_PATH)/player_collision.o: $(SRC_PATH)/player_collision.c \
+	$(SRC_PATH)/player.h $(SRC_PATH)/cube.h \
+	$(LIBFT_PATH)/libft.h $(VECTOR_PATH)/vector.h \
+	$(MLX_DIR)/include/MLX42/MLX42.h
+	mkdir -p $(OBJ_PATH)
+	$(CC) $(CFLAGS) $(INCLUDES) \
+	-c $(SRC_PATH)/player_collision.c -o $(OBJ_PATH)/player_collision.o
+
+$(OBJ_PATH)/player_input.o: $(SRC_PATH)/player_input.c \
+	$(SRC_PATH)/player.h $(SRC_PATH)/cube.h \
+	$(LIBFT_PATH)/libft.h $(VECTOR_PATH)/vector.h \
+	$(MLX_DIR)/include/MLX42/MLX42.h
+	mkdir -p $(OBJ_PATH)
+	$(CC) $(CFLAGS) $(INCLUDES) \
+	-c $(SRC_PATH)/player_input.c -o $(OBJ_PATH)/player_input.o
+
+$(OBJ_PATH)/player_movement.o: $(SRC_PATH)/player_movement.c \
+	$(SRC_PATH)/player.h $(SRC_PATH)/cube.h \
+	$(LIBFT_PATH)/libft.h $(VECTOR_PATH)/vector.h \
+	$(MLX_DIR)/include/MLX42/MLX42.h
+	mkdir -p $(OBJ_PATH)
+	$(CC) $(CFLAGS) $(INCLUDES) \
+	-c $(SRC_PATH)/player_movement.c -o $(OBJ_PATH)/player_movement.o
 
 $(OBJ_PATH)/error.o: $(SRC_PATH)/error.c $(SRC_PATH)/error.h \
 	$(LIBFT_PATH)/libft.h $(VECTOR_PATH)/vector.h \
@@ -180,6 +227,14 @@ $(OBJ_PATH)/minimap_walls.o: $(SRC_PATH)/minimap_walls.c $(SRC_PATH)/minimap.h \
 	$(CC) $(CFLAGS) $(INCLUDES) \
 	-c $(SRC_PATH)/minimap_walls.c -o $(OBJ_PATH)/minimap_walls.o
 
+$(OBJ_PATH)/minimap_fov.o: $(SRC_PATH)/minimap_fov.c $(SRC_PATH)/minimap.h \
+	$(SRC_PATH)/cube.h \
+	$(LIBFT_PATH)/libft.h $(VECTOR_PATH)/vector.h \
+	$(MLX_DIR)/include/MLX42/MLX42.h
+	mkdir -p $(OBJ_PATH)
+	$(CC) $(CFLAGS) $(INCLUDES) \
+	-c $(SRC_PATH)/minimap_fov.c -o $(OBJ_PATH)/minimap_fov.o
+
 $(OBJ_PATH)/minimap_utils.o: $(SRC_PATH)/minimap_utils.c $(SRC_PATH)/minimap.h \
 	$(SRC_PATH)/cube.h \
 	$(LIBFT_PATH)/libft.h $(VECTOR_PATH)/vector.h \
@@ -196,6 +251,14 @@ $(OBJ_PATH)/graphx_utils.o: $(SRC_PATH)/graphx_utils.c $(SRC_PATH)/graphx.h \
 	mkdir -p $(OBJ_PATH)
 	$(CC) $(CFLAGS) $(INCLUDES) \
 	-c $(SRC_PATH)/graphx_utils.c -o $(OBJ_PATH)/graphx_utils.o
+
+$(OBJ_PATH)/graphx_window.o: $(SRC_PATH)/graphx_window.c $(SRC_PATH)/graphx.h \
+	$(SRC_PATH)/cube.h \
+	$(LIBFT_PATH)/libft.h $(VECTOR_PATH)/vector.h \
+	$(MLX_DIR)/include/MLX42/MLX42.h
+	mkdir -p $(OBJ_PATH)
+	$(CC) $(CFLAGS) $(INCLUDES) \
+	-c $(SRC_PATH)/graphx_window.c -o $(OBJ_PATH)/graphx_window.o
 
 $(OBJ_PATH)/graphx_line.o: $(SRC_PATH)/graphx_line.c $(SRC_PATH)/graphx.h \
 	$(LIBFT_PATH)/libft.h $(VECTOR_PATH)/vector.h \

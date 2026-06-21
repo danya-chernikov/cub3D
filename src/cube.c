@@ -6,7 +6,7 @@
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/21 15:19:23 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/08 21:49:50 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/20 20:50:51 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "cube.h"
 #include "minimap.h"
 #include "parser.h"
+#include "render.h"
 #include "error.h"
 
 #include <stdio.h>
@@ -47,10 +48,13 @@ t_cube	*parser_init(int argc, char **argv)
 
 int	graphx_init(t_cube *cube)
 {
+	cube->gfx.win_width = WIN_WIDTH;
+	cube->gfx.win_height = WIN_HEIGHT;
 	cube->gfx.mlx = mlx_init(WIN_WIDTH, WIN_HEIGHT, "cub3D", true);
 	if (!cube->gfx.mlx)
 		return (COMMON_FAILURE);
-	cube->gfx.img = mlx_new_image(cube->gfx.mlx, WIN_WIDTH, WIN_HEIGHT);
+	cube->gfx.img = mlx_new_image(cube->gfx.mlx,
+		cube->gfx.win_width, cube->gfx.win_height);
 	if (!cube->gfx.img)
 		return (COMMON_FAILURE);
 	if (mlx_image_to_window(cube->gfx.mlx, cube->gfx.img, 0, 0) < 0)
@@ -63,9 +67,17 @@ void	game_loop(void *param)
 	t_cube	*cube;
 
 	cube = param;
+	handle_window_input(cube);
 	clear_image(cube->gfx.img, COLOR_BLUISH);
-	//player_handle_input(cube);
+	player_handle_input(cube);
+	render_scene(cube);
 	minimap_draw(cube->gfx.img, cube);
+}
+
+void	handle_window_input(t_cube *cube)
+{
+	if (mlx_is_key_down(cube->gfx.mlx, MLX_KEY_ESCAPE))
+		mlx_close_window(cube->gfx.mlx);
 }
 
 /* Fills the entire image with one color. This isused

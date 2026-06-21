@@ -6,10 +6,11 @@
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 15:53:27 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/09 18:07:25 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/21 01:06:03 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "player.h"
 #include "cube.h"
 
 /* Finds the player's spawn position in the map */
@@ -35,7 +36,7 @@ void	player_init(t_cube *cube)
 	}
 }
 
-int	is_player_spawn(u_char c)
+int	is_player_spawn(t_uchar c)
 {
 	if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
 		return (true);
@@ -52,5 +53,17 @@ void	set_player_spawn(t_cube *cube, int x, int y)
 	cube->player.pos.y = y + 0.5;
 	cube->player.collision_radius = PLAYER_COL_RADIUS;
 	cube->player.speed = PLAYER_SPEED;
+	cube->player.angle = player_spawn_angle(cube->map[y][x]);
 	cube->map[y][x] = '0';
+}
+
+double	player_spawn_angle(t_uchar c)
+{
+	if (c == 'N')
+		return (-PI / 2.0);
+	if (c == 'S')
+		return (PI / 2.0);
+	if (c == 'W')
+		return (PI);
+	return (0.0);
 }

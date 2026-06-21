@@ -6,7 +6,7 @@
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 15:06:55 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/09 17:46:43 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/20 02:12:45 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,20 @@ void	minimap_draw_walls(mlx_image_t *img, t_cube *cube);
 void	minimap_draw_wall(mlx_image_t *img, t_cube *cube, int mx, int my);
 int		map_cell_is_wall(t_cube *cube, int x, int y);
 int		map_cell_is_visible_wall(t_cube *cube, int x, int y);
-int		map_row_len(u_char *row);
+int		map_row_len(t_uchar *row);
+
+/* minimap_fov.c */
+void	minimap_draw_fov(mlx_image_t *img, t_cube *cube);
+t_coord	minimap_center(t_cube *cube);
+t_coord	minimap_ray_end(t_cube * cube, double angle);
+double	ray_x_limit(t_cube *cube, t_coord center, double dir_x);
+double	ray_y_limit(t_cube *cube, t_coord center, double dir_y);
 
 /* minimap_utils.c */
 void	minimap_put_pixel(mlx_image_t *img, t_minimap *minimap,
-	int x, int y, uint32_t color);
-int		in_minimap(t_minimap *minimap, int x, int y);
+			t_coord *pos, uint32_t color);
+bool	in_minimap(t_minimap *minimap, int x, int y);
 t_coord	map_cell_to_minimap(t_cube *cube, int mx, int my);
+t_coord	world_to_minimap(t_cube *cube, double wx, double wy);
 
 #endif
