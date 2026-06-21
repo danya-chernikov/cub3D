@@ -6,7 +6,7 @@
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 15:53:27 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/21 01:06:03 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/21 20:29:28 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void	set_player_spawn(t_cube *cube, int x, int y)
 	cube->player.pos.y = y + 0.5;
 	cube->player.collision_radius = PLAYER_COL_RADIUS;
 	cube->player.speed = PLAYER_SPEED;
+	cube->player.spawn_dir = cube->map[y][x];
 	cube->player.angle = player_spawn_angle(cube->map[y][x]);
 	cube->map[y][x] = '0';
 }

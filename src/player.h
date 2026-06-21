@@ -6,7 +6,7 @@
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 17:32:49 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/21 01:15:16 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/21 20:29:01 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct s_cube	t_cube;
 typedef struct s_player
 {
 	t_dcoord	pos;	
+	t_uchar		spawn_dir;
 	double		collision_radius;
 	double		speed;
 	double		angle;

@@ -6,7 +6,7 @@
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 15:06:55 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/20 02:12:45 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/21 20:28:45 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,12 @@
  *     pos				- minimap's position in the main window;
  *     size				- minimap's size in pixels;
  *     tile_size	    - how many pixels one map cell occupies on the minimap;
- *     player_radius_px - player's visual radius on the minimap, in pixels. */
+ *     player_radius_px - player's visual radius on the minimap, in pixels.
+ * More information about the minimap architecture. Some things there are
+ * outdated, but it may still be useful for understanding the overall structure
+ * and the relationships between functions:
+ *     https://www.figma.com/design/MOGITOdwaCYQ11DAqgljlT/cub3D?
+ *     node-id=222-4&t=THXDASvh5pgbq0VS-0*/
 typedef struct s_minimap
 {
 	t_coord		pos;
