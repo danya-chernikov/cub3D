@@ -6,7 +6,7 @@
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/05 14:35:43 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/08 16:22:33 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/23 15:22:09 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	main(void)
 	t_polygon	poly;
 	t_polygon	poly2;
 
-	mlx = mlx_init(WIN_WIDTH, WIN_HEIGHT, "Drawing a circle", true);
+	mlx = mlx_init(512, 512, "Drawing a circle", true);
 	if (!mlx)
 		graphx_error();
 	img = mlx_new_image(mlx, WIN_WIDTH, WIN_HEIGHT);

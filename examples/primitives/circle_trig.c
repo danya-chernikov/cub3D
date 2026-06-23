@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx_circle_trig.c                                  :+:      :+:    :+:   */
+/*   circle_trig.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/14 13:08:53 by dchernik          #+#    #+#             */
-/*   Updated: 2026/05/14 14:20:10 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/23 14:50:18 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	main(void)
 		ft_error();
 	center.x = WIN_WIDTH / 2;
 	center.y = WIN_HEIGHT / 2;
-	draw_circle(img, &center, 100, 0xFF0000FF);
+	draw_circle(img, &center, 200, 0xFF0000FF);
 	mlx_loop(mlx);
 	mlx_terminate(mlx);
 	return (EXIT_SUCCESS);

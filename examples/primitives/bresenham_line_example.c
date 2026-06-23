@@ -6,7 +6,7 @@
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/05 13:45:54 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/08 16:23:28 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/23 15:11:41 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	main(void)
 	t_coord			p0;
 	t_coord			p1;
 
-	mlx = mlx_init(WIN_WIDTH, WIN_HEIGHT, "Bresenham's Line Algorithm", true);
+	mlx = mlx_init(200, 200, "Bresenham's Line Algorithm", true);
 	if (!mlx)
 		graphx_error();
 	img = mlx_new_image(mlx, WIN_WIDTH, WIN_HEIGHT);
