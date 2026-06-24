@@ -6,7 +6,7 @@
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/21 15:19:23 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/20 20:50:51 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/24 16:23:26 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,18 @@ int	graphx_init(t_cube *cube)
 	return (COMMON_SUCCESS);
 }
 
+/* Main loop function called once
+ * per frame by MLX. First, we
+ * update `delta_time` so movement
+ * and rotaion can be scaled by
+ * real elapsed time instead of by
+ * the number of rendered frames */
 void	game_loop(void *param)
 {
 	t_cube	*cube;
 
 	cube = param;
+	game_update_delta_time(cube);
 	handle_window_input(cube);
 	clear_image(cube->gfx.img, COLOR_BLUISH);
 	player_handle_input(cube);
