@@ -6,7 +6,7 @@
 #    By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/06/08 20:13:09 by dchernik          #+#    #+#              #
-#    Updated: 2026/06/24 16:09:26 by dchernik         ###   ########.fr        #
+#    Updated: 2026/06/26 18:10:36 by dchernik         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,16 +38,14 @@ OBJ_PATH=obj/
 PARSER_SRCS=parser.c parse_map.c parse_validation.c \
 			parse_color.c parse_elements.c parser_utils.c
 
-RENDER_SRCS=cube.c cube_time.c render.c raycast.c raycast_setters.c \
-			player.c player_collision.c player_input.c \
-			player_movement.c error.c
+RENDER_SRCS=cube.c texture.c cube_time.c render.c render_texture.c \
+			raycast.c raycast_setters.c player.c player_collision.c \
+			player_input.c player_movement.c error.c
 
 MINIMAP_SRCS=minimap.c minimap_walls.c minimap_fov.c minimap_utils.c
 
-GRAPHX_SRCS=graphx_utils.c graphx_window.c \
-			graphx_line.c graphx_line_thick.c \
-			graphx_polygon.c graphx_polygon2.c \
-			graphx_circle.c
+GRAPHX_SRCS=graphx_utils.c graphx_window.c graphx_line.c graphx_line_thick.c \
+			graphx_polygon.c graphx_polygon2.c graphx_circle.c
 
 SRCS=main.c $(PARSER_SRCS) $(RENDER_SRCS) $(MINIMAP_SRCS) $(GRAPHX_SRCS)
 
@@ -156,6 +154,11 @@ $(OBJ_PATH)/cube.o: $(SRC_PATH)/cube.c $(HDRS)
 	$(CC) $(CFLAGS) $(INCLUDES) \
 	-c $(SRC_PATH)/cube.c -o $(OBJ_PATH)/cube.o
 
+$(OBJ_PATH)/texture.o: $(SRC_PATH)/texture.c $(HDRS)
+	mkdir -p $(OBJ_PATH)
+	$(CC) $(CFLAGS) $(INCLUDES) \
+	-c $(SRC_PATH)/texture.c -o $(OBJ_PATH)/texture.o
+
 $(OBJ_PATH)/cube_time.o: $(SRC_PATH)/cube_time.c $(HDRS)
 	mkdir -p $(OBJ_PATH)
 	$(CC) $(CFLAGS) $(INCLUDES) \
@@ -165,6 +168,11 @@ $(OBJ_PATH)/render.o: $(SRC_PATH)/render.c $(HDRS)
 	mkdir -p $(OBJ_PATH)
 	$(CC) $(CFLAGS) $(INCLUDES) \
 	-c $(SRC_PATH)/render.c -o $(OBJ_PATH)/render.o
+
+$(OBJ_PATH)/render_texture.o: $(SRC_PATH)/render_texture.c $(HDRS)
+	mkdir -p $(OBJ_PATH)
+	$(CC) $(CFLAGS) $(INCLUDES) \
+	-c $(SRC_PATH)/render_texture.c -o $(OBJ_PATH)/render_texture.o
 
 $(OBJ_PATH)/raycast.o: $(SRC_PATH)/raycast.c $(HDRS)
 	mkdir -p $(OBJ_PATH)

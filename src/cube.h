@@ -6,7 +6,7 @@
 /*   By: adeestev <adeestev@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/21 15:19:30 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/25 19:50:51 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/26 18:02:32 by dchernik         ###   ########.fr       */
 /*   Updated: 2026/06/05 20:24:05 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -53,10 +53,14 @@ typedef struct s_cube
  * file path length */
 typedef struct s_texture
 {
-	const char	*north_path;
-	const char	*east_path;
-	const char	*south_path;
-	const char	*west_path;
+	char	*north_path;
+	char	*east_path;
+	char	*south_path;
+	char	*west_path;
+	xpm_t	*north;
+	xpm_t	*east;
+	xpm_t	*south;
+	xpm_t	*west;
 }	t_texture;
 
 /* cube.c */
@@ -69,5 +73,9 @@ void	clear_image(mlx_image_t *img, uint32_t color);
 /* cube_time.c */
 void	game_update_delta_time(t_cube *cube);
 double	game_time_now(void);
+
+/* texture.c */
+int		textures_load(t_cube *cube);
+int		texture_load_one(xpm_t **dst, char *path);
 
 #endif
