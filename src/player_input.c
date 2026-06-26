@@ -6,7 +6,7 @@
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/21 01:13:09 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/24 16:28:34 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/25 19:50:40 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
  * speed even if FPS changes. Diagonal movement
  * is normalized so that it is not faster than
  * horizontal or vertical movement.
+ *     move - a temporary vector of the player's
+ *			  desired movement for the current frame.
  * How do we normalize:
  * https://www.figma.com/design/MOGITOdwaCYQ11DAqgljlT/cub3D?
  * node-id=168-3&t=cIe9W1KPA9g55vKf-0 */
@@ -41,9 +43,11 @@ void	player_handle_input(t_cube *cube)
 	player_add_move(cube, &move, dir, right);
 	len = sqrt(move.x * move.x + move.y * move.y);
 	if (len > 0)
+	{
 		player_move(cube,
 			(move.x / len) * cube->player.speed * cube->delta_time,
 			(move.y / len) * cube->player.speed * cube->delta_time);
+	}
 }
 
 /* Updates the player's viewing angle.

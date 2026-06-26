@@ -6,7 +6,7 @@
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 15:53:27 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/21 20:29:28 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/25 18:34:34 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,11 @@ void	set_player_spawn(t_cube *cube, int x, int y)
 	cube->map[y][x] = '0';
 }
 
+/* Returns the initial player angle
+ * based on the spawn direction. The
+ * angles follow the trigonometric
+ * circle, but in our coordinate
+ * system the y-axis grows downward */
 double	player_spawn_angle(t_uchar c)
 {
 	if (c == 'N')

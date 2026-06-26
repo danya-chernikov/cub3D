@@ -6,7 +6,7 @@
 /*   By: adeestev <adeestev@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/21 15:19:30 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/24 16:17:21 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/25 19:50:51 by dchernik         ###   ########.fr       */
 /*   Updated: 2026/06/05 20:24:05 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -19,6 +19,9 @@
 #include "minimap.h"
 
 # include <stdint.h>
+
+# define PROG_NAME		"cube3D"
+# define MAX_DELTA_TIME	0.05
 
 typedef struct s_texture	t_texture;
 
@@ -64,7 +67,7 @@ void	handle_window_input(t_cube *cube);
 void	clear_image(mlx_image_t *img, uint32_t color);
 
 /* cube_time.c */
-double	game_time_now(void);
 void	game_update_delta_time(t_cube *cube);
+double	game_time_now(void);
 
 #endif

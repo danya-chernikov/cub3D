@@ -6,21 +6,13 @@
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 10:02:17 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/24 16:28:53 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/25 19:50:40 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
 #include <sys/time.h>
-
-double	game_time_now(void)
-{
-	struct timeval	tv;
-
-	gettimeofday(&tv, NULL);
-	return ((double)tv.tv_sec + (double)tv.tv_usec / 1000000.0);
-}
 
 /* Updates the time difference between the
  * current frame and the previous frame.
@@ -42,6 +34,14 @@ void	game_update_delta_time(t_cube *cube)
 	else
 		cube->delta_time = now - cube->last_time;
 	cube->last_time = now;
-	if (cube->delta_time > 0.05)
-		cube->delta_time = 0.05;
+	if (cube->delta_time > MAX_DELTA_TIME)
+		cube->delta_time = MAX_DELTA_TIME;
+}
+
+double	game_time_now(void)
+{
+	struct timeval	tv;
+
+	gettimeofday(&tv, NULL);
+	return ((double)tv.tv_sec + (double)tv.tv_usec / 1000000.0);
 }

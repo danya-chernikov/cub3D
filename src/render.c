@@ -6,7 +6,7 @@
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/20 20:47:21 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/21 02:46:18 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/26 11:53:09 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,4 +83,32 @@ uint32_t	render_wall_color(int side)
 	if (side == X_SIDE)
 		return (COLOR_GRAY);
 	return (COLOR_LIGHT_GRAY);
+}
+
+void	render_floor_ceiling(t_cube *cube)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	while (y < cube->gfx.win_height / 2)
+	{
+		x = 0;
+		while (x < cube->gfx.win_width)
+		{
+			mlx_put_pixel(cube->gfx.img, x, y, cube->ceiling_color);
+			++x;
+		}
+		++y;
+	}
+	while (y < cube->gfx.win_height)
+	{
+		x = 0;
+		while (x < cube->gfx.win_width)
+		{
+			mlx_put_pixel(cube->gfx.img, x, y, cube->floor_color);
+			++x;
+		}
+		++y;
+	}
 }
