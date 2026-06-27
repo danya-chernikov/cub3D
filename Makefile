@@ -6,7 +6,7 @@
 #    By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/06/08 20:13:09 by dchernik          #+#    #+#              #
-#    Updated: 2026/06/26 18:10:36 by dchernik         ###   ########.fr        #
+#    Updated: 2026/06/27 12:53:11 by dchernik         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,9 +38,10 @@ OBJ_PATH=obj/
 PARSER_SRCS=parser.c parse_map.c parse_validation.c \
 			parse_color.c parse_elements.c parser_utils.c
 
-RENDER_SRCS=cube.c texture.c cube_time.c render.c render_texture.c \
-			raycast.c raycast_setters.c player.c player_collision.c \
-			player_input.c player_movement.c error.c
+RENDER_SRCS=cube.c texture.c cube_time.c render.c render2.c \
+			render_texture.c raycast.c raycast_setters.c \
+			player.c player_collision.c player_input.c \
+			player_movement.c error.c
 
 MINIMAP_SRCS=minimap.c minimap_walls.c minimap_fov.c minimap_utils.c
 
@@ -168,6 +169,11 @@ $(OBJ_PATH)/render.o: $(SRC_PATH)/render.c $(HDRS)
 	mkdir -p $(OBJ_PATH)
 	$(CC) $(CFLAGS) $(INCLUDES) \
 	-c $(SRC_PATH)/render.c -o $(OBJ_PATH)/render.o
+
+$(OBJ_PATH)/render2.o: $(SRC_PATH)/render2.c $(HDRS)
+	mkdir -p $(OBJ_PATH)
+	$(CC) $(CFLAGS) $(INCLUDES) \
+	-c $(SRC_PATH)/render2.c -o $(OBJ_PATH)/render2.o
 
 $(OBJ_PATH)/render_texture.o: $(SRC_PATH)/render_texture.c $(HDRS)
 	mkdir -p $(OBJ_PATH)

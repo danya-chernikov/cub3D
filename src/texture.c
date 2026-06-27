@@ -1,8 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   texture.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/06/26 11:26:39 by dchernik          #+#    #+#             */
+/*   Updated: 2026/06/27 12:28:13 by dchernik         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cube.h"
 #include "error.h"
 
 #include "libft.h"
 
+/*  */
 int	textures_load(t_cube *cube)
 {
 	if (!texture_load_one(&cube->tex_files->north, cube->tex_files->north_path))
