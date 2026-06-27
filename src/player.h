@@ -6,7 +6,7 @@
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 17:32:49 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/21 01:15:16 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/24 16:01:13 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@
 
 # define PLAYER_RADIUS		5				/* In px */
 # define PLAYER_COL_RADIUS	0.31			/* Because 16px * 0.31 ≈ 5px */
-# define PLAYER_SPEED		0.05
+# define PLAYER_SPEED		3				/* In cells per second! */
 # define PI					3.1415926535	/* Yeah we could use MATH_PI */
 # define PLAYER_FOV_DEG		66.0
 # define PLAYER_FOV_RAD		(PLAYER_FOV_DEG * PI / 180.0)
-# define PLAYER_ROT_SPEED	0.04
+# define PLAYER_ROT_SPEED	2.4				/* In radians per second! */
 
 typedef struct s_cube	t_cube;
 
@@ -37,6 +37,7 @@ typedef struct s_cube	t_cube;
 typedef struct s_player
 {
 	t_dcoord	pos;	
+	t_uchar		spawn_dir;
 	double		collision_radius;
 	double		speed;
 	double		angle;

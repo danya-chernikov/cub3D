@@ -6,7 +6,7 @@
 /*   By: adeestev <adeestev@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/18 18:59:46 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/10 19:58:35 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/26 16:46:07 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,11 @@ int main(int argc, char **argv)
 	if (!cube)
 		exit(EXIT_FAILURE);
 	player_init(cube);
+	if (!textures_load(cube))
+	{
+		free_cube(cube);
+		exit(EXIT_FAILURE);
+	}
 	minimap_init(cube, (t_coord){MINIMAP_POS_X, MINIMAP_POS_Y});
 	if (!graphx_init(cube))
 		graphx_error();

@@ -6,7 +6,7 @@
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/21 01:13:09 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/21 02:25:49 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/25 19:50:40 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,13 @@
 /* Reads the current keyboard state and updates
  * the player. Arrow keys rotate the view, while
  * WASD moves the player relative to the current
- * viewing direction. Diagonal movement is
- * normalized so that it is not faster than
+ * viewing direction. Movement is multiplied by
+ * `delta_time` so the player moves at the same
+ * speed even if FPS changes. Diagonal movement
+ * is normalized so that it is not faster than
  * horizontal or vertical movement.
+ *     move - a temporary vector of the player's
+ *			  desired movement for the current frame.
  * How do we normalize:
  * https://www.figma.com/design/MOGITOdwaCYQ11DAqgljlT/cub3D?
  * node-id=168-3&t=cIe9W1KPA9g55vKf-0 */
@@ -39,16 +43,23 @@ void	player_handle_input(t_cube *cube)
 	player_add_move(cube, &move, dir, right);
 	len = sqrt(move.x * move.x + move.y * move.y);
 	if (len > 0)
-		player_move(cube, (move.x / len) * cube->player.speed,
-			(move.y / len) * cube->player.speed);
+	{
+		player_move(cube,
+			(move.x / len) * cube->player.speed * cube->delta_time,
+			(move.y / len) * cube->player.speed * cube->delta_time);
+	}
 }
 
+/* Updates the player's viewing angle.
+ * Rotation speed is measured in radians
+ * per second so similarly it's multiplied
+ * by `delta_time` */
 void	player_update_rotation(t_cube *cube)
 {
 	if (mlx_is_key_down(cube->gfx.mlx, MLX_KEY_LEFT))
-		cube->player.angle -= PLAYER_ROT_SPEED;
+		cube->player.angle -= PLAYER_ROT_SPEED * cube->delta_time;
 	if (mlx_is_key_down(cube->gfx.mlx, MLX_KEY_RIGHT))
-		cube->player.angle += PLAYER_ROT_SPEED;
+		cube->player.angle += PLAYER_ROT_SPEED * cube->delta_time;
 }
 
 /* Returns the player's forward direction

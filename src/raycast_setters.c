@@ -6,13 +6,13 @@
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/20 20:20:36 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/21 02:36:22 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/25 14:53:18 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render.h"
 #include "cube.h"
-#include "libft.h"
+#include "libft.h" /* For INF constant */
 
 #include <math.h>
 

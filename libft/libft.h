@@ -6,7 +6,7 @@
 /*   By: adeestev <adeestev@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 18:40:28 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/20 01:31:39 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/26 16:28:35 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,11 +81,11 @@ void	gnl_finish(int fd);
  *				 other entity if we did not manage to find
  *				 its real value, or any other data we were
  *				 looking for */
-# define COMMON_HOME_DIR		"/home"
-# define PASSWD_PATH			"/etc/passwd"
+# define COMMON_HOME_DIR	"/home"
+# define PASSWD_PATH		"/etc/passwd"
 # define PROC_INFO_SOURCE	"/proc/self/status"
 # define PROC_PID_TOKEN		"Pid"
-# define PROC_PPID_TOKEN		"PPid"
+# define PROC_PPID_TOKEN	"PPid"
 # define UNKNOWN_USER_NAME	"unknown" 
 
 /* The analogue of system

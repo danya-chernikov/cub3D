@@ -6,7 +6,7 @@
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/21 15:19:23 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/20 20:50:51 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/26 12:03:19 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	graphx_init(t_cube *cube)
 {
 	cube->gfx.win_width = WIN_WIDTH;
 	cube->gfx.win_height = WIN_HEIGHT;
-	cube->gfx.mlx = mlx_init(WIN_WIDTH, WIN_HEIGHT, "cub3D", true);
+	cube->gfx.mlx = mlx_init(WIN_WIDTH, WIN_HEIGHT, PROG_NAME, true);
 	if (!cube->gfx.mlx)
 		return (COMMON_FAILURE);
 	cube->gfx.img = mlx_new_image(cube->gfx.mlx,
@@ -62,14 +62,21 @@ int	graphx_init(t_cube *cube)
 	return (COMMON_SUCCESS);
 }
 
+/* Main loop function called once
+ * per frame by MLX. First, we
+ * update `delta_time` so movement
+ * and rotaion can be scaled by
+ * real elapsed time instead of by
+ * the number of rendered frames */
 void	game_loop(void *param)
 {
 	t_cube	*cube;
 
 	cube = param;
+	game_update_delta_time(cube);
 	handle_window_input(cube);
-	clear_image(cube->gfx.img, COLOR_BLUISH);
 	player_handle_input(cube);
+	render_floor_ceiling(cube);
 	render_scene(cube);
 	minimap_draw(cube->gfx.img, cube);
 }
@@ -80,7 +87,7 @@ void	handle_window_input(t_cube *cube)
 		mlx_close_window(cube->gfx.mlx);
 }
 
-/* Fills the entire image with one color. This isused
+/* Fills the entire image with one color. This is used
  * to clear the previous frame before drawing the next
  * one. Obviously, we cannot go outside the window area
  * here, so we can simply use mlx_put_pixel()

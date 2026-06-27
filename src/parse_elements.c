@@ -6,7 +6,7 @@
 /*   By: adeestev <adeestev@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/27 11:27:25 by adeestev          #+#    #+#             */
-/*   Updated: 2026/06/10 11:58:50 by adeestev         ###   ########.fr       */
+/*   Updated: 2026/06/26 18:03:36 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ extracts and validates a file path for a texture:
 - open and verify the file exists on the system
 - ensure no garbage text was appended
 */
-static int	assign_tture(const char **tex_path, char *ptr)
+static int	assign_tture(char **tex_path, char *ptr)
 {
 	int		len;
 	char	*path;

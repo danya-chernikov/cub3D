@@ -6,7 +6,7 @@
 /*   By: adeestev <adeestev@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/17 15:06:32 by adeestev          #+#    #+#             */
-/*   Updated: 2026/06/10 11:42:09 by adeestev         ###   ########.fr       */
+/*   Updated: 2026/06/26 16:55:17 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,14 @@ static void	free_texture(t_texture *tex)
 {
 	if (!tex)
 		return ;
+	if (tex->north)
+		mlx_delete_xpm42(tex->north);
+	if (tex->south)
+		mlx_delete_xpm42(tex->south);
+	if (tex->west)
+		mlx_delete_xpm42(tex->west);
+	if (tex->east)
+		mlx_delete_xpm42(tex->east);
 	if (tex->north_path)
 		free((void *)tex->north_path);
 	if (tex->south_path)

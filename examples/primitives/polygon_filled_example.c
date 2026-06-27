@@ -6,7 +6,7 @@
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/05 13:52:31 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/08 16:23:16 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/23 15:27:25 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	main(void)
 	t_polygon	poly;
 	t_polygon	poly2;
 
-	mlx = mlx_init(WIN_WIDTH, WIN_HEIGHT, "Drawing a filled polygon", true);
+	mlx = mlx_init(512, 512, "Drawing a filled polygon", true);
 	if (!mlx)
 		graphx_error();
 	img = mlx_new_image(mlx, WIN_WIDTH, WIN_HEIGHT);

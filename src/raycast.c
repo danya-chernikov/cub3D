@@ -6,7 +6,7 @@
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/20 18:54:08 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/21 02:33:41 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/25 14:58:16 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	ray_cast(t_cube *cube, t_ray *ray)
  * wall column on screen */
 double	ray_perp_dist(t_ray *ray)
 {
-	if (ray->side == 0)
+	if (ray->side == X_SIDE)
 		return (ray->side_dist.x - ray->delta_dist.x);
 	return (ray->side_dist.y - ray->delta_dist.y);
 }

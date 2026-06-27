@@ -6,7 +6,7 @@
 /*   By: adeestev <adeestev@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/25 11:29:50 by adeestev          #+#    #+#             */
-/*   Updated: 2026/06/10 12:13:56 by adeestev         ###   ########.fr       */
+/*   Updated: 2026/06/26 12:01:31 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,6 @@ int	parse_color(char *line, uint32_t *color)
 		return (print_error(MAP_INV_COL_RANGE_ERR), 0);
 	if (*line != '\n' && *line != '\0' && *line != '\r')
 		return (print_error(MAP_INV_COL_RANGE_ERR), 0);
-	*color = (r << 16) | (g << 8) | b;
+	*color = (r << 24) | (g << 16) | (b << 8) | 0xFF;
 	return (1);
 }

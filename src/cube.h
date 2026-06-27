@@ -6,7 +6,7 @@
 /*   By: adeestev <adeestev@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/21 15:19:30 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/15 16:16:07 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/26 18:02:32 by dchernik         ###   ########.fr       */
 /*   Updated: 2026/06/05 20:24:05 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -20,10 +20,17 @@
 
 # include <stdint.h>
 
+# define PROG_NAME		"cube3D"
+# define MAX_DELTA_TIME	0.05
+
 typedef struct s_texture	t_texture;
 
 /* Our main structre.
- *     gfx - graphics data: MLX syntax and the main image descriptor; */
+ *     gfx		  - graphics data: MLX syntax and the main image descriptor;
+ *     delta_time - time elapsed since the previous frame, in seconds.
+ *					Used to make movement and rotation independent of FPS;
+ *     last_time  - timestamp of the previous frame, in seconds. Used to
+ *					compute `delta_time` on the next frame */
 typedef struct s_cube
 {
 	t_texture		*tex_files;
@@ -34,7 +41,9 @@ typedef struct s_cube
 	int				map_height;
 	t_player		player;
 	t_minimap		minimap;
-	t_graph_data	gfx; // we'll definitey need it
+	t_graph_data	gfx;
+	double			delta_time;
+	double			last_time;
 }	t_cube;
 
 /* Contains file paths to
@@ -44,10 +53,14 @@ typedef struct s_cube
  * file path length */
 typedef struct s_texture
 {
-	const char	*north_path;
-	const char	*east_path;
-	const char	*south_path;
-	const char	*west_path;
+	char	*north_path;
+	char	*east_path;
+	char	*south_path;
+	char	*west_path;
+	xpm_t	*north;
+	xpm_t	*east;
+	xpm_t	*south;
+	xpm_t	*west;
 }	t_texture;
 
 /* cube.c */
@@ -56,5 +69,13 @@ int		graphx_init(t_cube *cube);
 void	game_loop(void *param);
 void	handle_window_input(t_cube *cube);
 void	clear_image(mlx_image_t *img, uint32_t color);
+
+/* cube_time.c */
+void	game_update_delta_time(t_cube *cube);
+double	game_time_now(void);
+
+/* texture.c */
+int		textures_load(t_cube *cube);
+int		texture_load_one(xpm_t **dst, char *path);
 
 #endif
