@@ -1,10 +1,10 @@
-NO textures/no.png
-SO textures/so.png
-WE textures/we.png
-EA textures/ea.png
+SO ./textures/so.xpm42
+NO ./textures/no.xpm42
+WE ./textures/we.xpm42
+EA ./textures/ea.xpm42
 
-F 20,20,20
-C 155,211,77
+F 46,98,48
+C 173,203,229
 
 111111111111111
 100000000000001
