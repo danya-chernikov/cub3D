@@ -6,7 +6,7 @@
 #    By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/06/08 20:13:09 by dchernik          #+#    #+#              #
-#    Updated: 2026/06/27 12:53:11 by dchernik         ###   ########.fr        #
+#    Updated: 2026/06/28 00:03:43 by dchernik         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ CC=cc
 NAME=cub3D
 
 # If 0, the debugging is turned off
-DEBUG_LVL=1
+DEBUG_LVL=0
 
 # Library paths
 # The `libft` library has to be built
@@ -70,14 +70,14 @@ HDRS=$(PROJECT_HDRS) $(LIB_HDRS)
 
 
 # C compiler options
-CFLAGS=-Wall -Werror -Wextra -O0 -g3
+CFLAGS:=-Wall -Werror -Wextra
 
 ifeq ($(DEBUG_LVL),1)
-CFLAGS=-Wall -Wextra -Werror -O0 -g3 -DDEBUG=1
-MLX_DEBUG=-DDEBUG=1
+CFLAGS+=-O0 -g3 -DDEBUG=1
+MLX_DEBUG:=-DDEBUG=1
 else
-CFLAGS=-Wall -Wextra -Werror -DDEBUG=0
-MLX_DEBUG=-DDEBUG=0
+CFLAGS+=-O2 -DDEBUG=0
+MLX_DEBUG:=-DDEBUG=0
 endif
 
 INCLUDES=-I$(LIBFT_PATH) \

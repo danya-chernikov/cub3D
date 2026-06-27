@@ -6,12 +6,14 @@
 /*   By: adeestev <adeestev@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/21 15:19:38 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/27 18:19:18 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/28 00:55:54 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ERROR_H
 # define ERROR_H
+
+#include <stddef.h>
 
 /* Parsing stage error messages */
 # define MAP_OUTLINE_ERR		"Map's outline is not closed"
@@ -36,6 +38,8 @@
 /* MLX error messages */
 # define MLX_INIT_ERR			"Could not initialize mlx42 library"
 
+/* error.c */
 void	print_error(const char *msg);
+int		write_all(int fd, const char *s, size_t len);
 
 #endif
