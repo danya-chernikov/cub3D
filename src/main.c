@@ -6,17 +6,14 @@
 /*   By: adeestev <adeestev@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/18 18:59:46 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/26 16:46:07 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/27 19:14:29 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 #include "parser.h"
 
-#include <stdlib.h> /* For free() */
-#include <stdio.h> /* For printf testing parsing */
-
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_cube	*cube;
 

@@ -6,7 +6,7 @@
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/05 13:16:39 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/05 13:26:24 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/27 19:12:33 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ int	collect_intersections(t_polygon *poly, int y, double *x_intersections)
 		next = (i + 1) % poly->vert_num;
 		if (edge_crosses_y(poly->vertices[i], poly->vertices[next], y))
 		{
-			x_intersections[count] =
-				edge_x_at_y(poly->vertices[i], poly->vertices[next], y);
+			x_intersections[count]
+				= edge_x_at_y(poly->vertices[i], poly->vertices[next], y);
 			++count;
 		}
 		++i;

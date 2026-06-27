@@ -6,7 +6,7 @@
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 19:11:41 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/05 15:06:53 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/27 18:26:43 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 /* Used by circle_draw() */
 static void	put_circle_points(mlx_image_t *img, t_coord c,
-	t_coord p, uint32_t color);
+				t_coord p, uint32_t color);
 
 /* Used by circle_filled_draw() */
 static void	put_circle_lines(mlx_image_t *img, t_coord c,
-	t_coord p, uint32_t color);
+				t_coord p, uint32_t color);
 
 /* Basic midpoint circle algorithm implementation.
  * Here we calculate the points of one octant of the
@@ -52,7 +52,6 @@ void	circle_draw(mlx_image_t *img, t_coord center,
 void	circle_filled_draw(mlx_image_t *img, t_coord center,
 	int radius, uint32_t color)
 {
-
 	t_coord		p;
 	int			err;
 

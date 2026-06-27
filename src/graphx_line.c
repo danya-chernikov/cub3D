@@ -6,7 +6,7 @@
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 19:11:53 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/03 20:36:20 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/27 18:45:32 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,3 @@ void	bresenham_update_error(t_coord *p0, int *err,
 		p0->y += steps[BR_SY];
 	}
 }
-

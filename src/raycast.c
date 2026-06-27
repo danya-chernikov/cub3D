@@ -6,7 +6,7 @@
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/20 18:54:08 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/25 14:58:16 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/27 19:33:44 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,13 @@ void	ray_init(t_cube *cube, t_ray *ray, int screen_x)
 {
 	double		camera_x;
 	double		plane_len;
+	double		player_fov_rad;
 	t_dcoord	dir;
 	t_dcoord	plane;
 
 	camera_x = 2.0 * screen_x / (double)cube->gfx.win_width - 1.0;
-	plane_len = tan(PLAYER_FOV_RAD / 2);
+	player_fov_rad = PLAYER_FOV_DEG * PI / 180.0;
+	plane_len = tan(player_fov_rad / 2);
 	dir.x = cos(cube->player.angle);
 	dir.y = sin(cube->player.angle);
 	plane.x = -dir.y * plane_len;

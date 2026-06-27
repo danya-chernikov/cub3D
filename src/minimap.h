@@ -6,7 +6,7 @@
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 15:06:55 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/21 20:28:45 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/27 19:17:25 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int		map_row_len(t_uchar *row);
 /* minimap_fov.c */
 void	minimap_draw_fov(mlx_image_t *img, t_cube *cube);
 t_coord	minimap_center(t_cube *cube);
-t_coord	minimap_ray_end(t_cube * cube, double angle);
+t_coord	minimap_ray_end(t_cube *cube, double angle);
 double	ray_x_limit(t_cube *cube, t_coord center, double dir_x);
 double	ray_y_limit(t_cube *cube, t_coord center, double dir_y);
 

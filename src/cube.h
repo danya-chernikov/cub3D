@@ -6,7 +6,7 @@
 /*   By: adeestev <adeestev@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/21 15:19:30 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/26 18:02:32 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/27 15:42:18 by dchernik         ###   ########.fr       */
 /*   Updated: 2026/06/05 20:24:05 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -14,9 +14,9 @@
 #ifndef CUBE_H
 # define CUBE_H
 
-#include "libft.h"
-#include "graphx.h"
-#include "minimap.h"
+# include "libft.h"
+# include "graphx.h"
+# include "minimap.h"
 
 # include <stdint.h>
 
