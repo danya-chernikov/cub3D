@@ -6,14 +6,14 @@
 /*   By: adeestev <adeestev@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/21 15:19:38 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/28 00:55:54 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/28 15:05:01 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ERROR_H
 # define ERROR_H
 
-#include <stddef.h>
+# include <stddef.h>
 
 /* Parsing stage error messages */
 # define MAP_OUTLINE_ERR		"Map's outline is not closed"

@@ -6,7 +6,7 @@
 /*   By: adeestev <adeestev@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/21 15:19:43 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/28 00:55:05 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/28 15:25:28 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	print_error(const char *msg)
 		return ;
 	if (!write_all(STDERR_FILENO, "Error\n", 6))
 		return ;
-	if (write_all(STDERR_FILENO, msg, ft_strlen(msg)))
+	if (!write_all(STDERR_FILENO, msg, ft_strlen(msg)))
 		return ;
 	write_all(STDERR_FILENO, "\n", 1);
 }
