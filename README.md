@@ -29,6 +29,8 @@ specific cub3D raycasting project. Primarily, it was done as a sort of warm up
 before starting to implement the raytracer (miniRT project).
 
 ### How does it work ###
+
+#### Parsing part ####
 During the parsing stage, we used the `get_next_line()` function implemented
 earlier (the code style of my GNL is awful, but it works pretty well! but I
 actually (re)invented it back in the days). Moreover, we added a flag to it so
@@ -39,6 +41,67 @@ stored in a singly linked list. This way, buffer overflow will never happen,
 and our program can process very large files. So, yeah, we parse the file
 content according to the subject requirements, and the parser works well.
 
+*Phase 1: Program Entry & Initialization*
+
+The architecture begins with the program's entry point, `main()`, which
+validates the argument count and immediately defers to `parser_init()`.
+The initialization phase prioritizes a clean slate by using `ft_calloc()`
+to allocate and zero out the main game structure (`t_cube`), setting the
+stage for the core parsing engine.
+
+*Phase 2: Core Parsing Engine*
+
+The core engine acts as a router, spearheaded by `parse_cub_file()`
+	- It sets up a temporary workspace (`t_parse_data`) with safe default
+	  values and validates the .cub file extension
+	- As `read_file_lines()` loops through the file, memory efficiency is
+	  maintained by immediately freeing the line pointer after processing
+	- The `handle_line()` function dictates the flow, ignoring empty lines
+	  before the map and directing valid lines to either element parsing
+	  or map content parsing.
+
+*Phase 3: Elements & Color Processing*
+
+Before building the map, the parser extracts necessary rendering
+configurations. Textures: Functions like `parse_element()` identify
+cardinal direction textures (NO, SO, WE, EA), which are safely validated
+and checked for duplicates using open() in `assign_tture()`. Colors:
+Floor (F) and Ceiling (C) colors are processed by extracting RGB components.
+The architecture elegantly handles these colors by packing the 0-255 R, G,
+and B values into a single 32-bit integer using bitshifting
+`((r << 24) | (g << 16) | (b << 8) | 0xFF)`.
+
+*Phase 4: Map Extraction & Array Construction*
+
+Because the total map height is unknown during the reading phase, the
+architecture relies on a dynamic data structure. `process_map_line()`
+duplicates each map line into a Linked List (`t_list`) while tracking the
+maximum line width. Once extraction is complete, `build_map_array()`
+converts this linked list into a final 2D array, explicitly padding any
+missing widths with space characters (' ') to enforce a perfectly
+rectangular grid.
+
+*Phase 5: Map Validation & Flood Fill*
+
+This phase is critical for preventing game-breaking rendering errors.
+`validate_map()` rejects forbidden characters and enforces a strict
+one-player rule. Furthermore, a sophisticated validation step occurs:
+`check_neighbors()` actively rejects maps if floors (0) or the player
+touch boundaries or empty spaces. The architecture implements a flood-fill
+algorithm (`check_islands()`) that initiates from the player's start
+position, utilizing a boolean visited array to guarantee that all valid
+tiles are reachable and rejecting the map if any disconnected "islands" exist.
+
+*Phase 6: Memory Cleanup (Zero Leaks)*
+
+Aligned with the strict requirement of zero memory leaks, the architectural
+storyline concludes with rigorous cleanup. The temporary workspace, including
+the linked list and the flood-fill boolean array, is flushed out by
+`free_parse_data()` before the main game loop begins. Finally, upon exit,
+`free_cube()` completely destroys the 2D array, textures, string paths,
+and related structures.
+
+#### Graphics part ####
 A lot has already been said about the project's inner parts in plenty of
 other tutorials, so there is no need to duplicate all of that here. What
 we mainly did was follow Lodev's instructions. Before adapting his approach
