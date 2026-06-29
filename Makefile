@@ -6,7 +6,7 @@
 #    By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/06/08 20:13:09 by dchernik          #+#    #+#              #
-#    Updated: 2026/06/29 03:05:25 by dchernik         ###   ########.fr        #
+#    Updated: 2026/06/29 12:29:15 by dchernik         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -84,6 +84,9 @@ INCLUDES=-I$(LIBFT_PATH) \
 LIBFLAGS=-ldl -lglfw -pthread -lm -lGL
 
 all: $(NAME)
+
+bonus: all
+	@echo "No separate bonus part implemented so mandatory part was built"
 
 $(NAME): $(OBJS) $(LIBFT_A) $(MLX_A)
 	$(CC) $(CFLAGS) $(OBJS) $(LIBFT_A) $(MLX_A) \
@@ -287,4 +290,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all bonus clean fclean re

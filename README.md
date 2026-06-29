@@ -1,6 +1,6 @@
-# cub3D
-
 *This project has been created as part of the 42 curriculum by dchernik and adeestev.*
+
+# cub3D
 
 ## Description ##
 
@@ -51,7 +51,7 @@ algorithm, a circle using Bresenham's algorithm again, and a filled circle.
 This gave us a good base for drawing a 2D minimap.
 
 After that, we started implementing the actual game logic around the
-minimap: player movement through the map, wall collision, ray emission, FOW
+minimap: player movement through the map, wall collision, ray emission, FOV
 visualization, and player rotation. Once the 2D part became clear enough, we
 moved on to the real raycasting part. We implemented ray emission using the
 Digital Differential Analyzer technique. Instead of moving the ray pixel by

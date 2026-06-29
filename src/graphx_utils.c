@@ -6,11 +6,12 @@
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 15:49:53 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/29 04:08:17 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/29 12:12:31 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "graphx.h"
+#include "error.h"
 
 #include <stdio.h>
 #include <stdlib.h>
