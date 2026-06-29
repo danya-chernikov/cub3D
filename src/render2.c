@@ -6,7 +6,7 @@
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/27 08:44:11 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/27 12:51:40 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/27 18:44:18 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,27 +40,3 @@ void	render_floor_ceiling(t_cube *cube)
 		++y;
 	}
 }
-
-/* Returns a temporary wall color for the
- * current ray hit. Since we do not render
- * textures yet, we use two different
- * gray colors to make the 3D view easier
- * to read.
- * side == X_SIDE means that the ray hit
- * a vertical side of a map cell, while
- * side == Y_SIDE means that it hit a
- * horizontal side. Drawing one side
- * slightly darker creates a simple shading
- * effect and helps us see the wall direction
- * and check that the DDA algorithm works
- * correctly. Later, this temporary coloring
- * will be replaced by texture selection
- * depending on the wall orientation
- * LET'S JUST LEAVE IT HERE TEMPORARY
- * FOR DEBUGGING PURPOSES */
-/*uint32_t	render_wall_color(int side)
-{
-	if (side == X_SIDE)
-		return (COLOR_GRAY);
-	return (COLOR_LIGHT_GRAY);
-}*/

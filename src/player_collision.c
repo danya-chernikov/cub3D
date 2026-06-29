@@ -6,7 +6,7 @@
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 17:32:43 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/14 23:52:04 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/27 19:27:55 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,22 +25,22 @@ int	player_hits_wall(t_cube *cube, double x, double y)
 	t_coord	min;
 	t_coord	max;
 	t_coord	cur_cell;
+	double	r;
 
-	min.x = (int)floor(x - cube->player.collision_radius);
-	max.x = (int)floor(x + cube->player.collision_radius);
-	min.y = (int)floor(y - cube->player.collision_radius);
-	max.y = (int)floor(y + cube->player.collision_radius);
+	r = cube->player.collision_radius;
+	min.x = (int)floor(x - r);
+	max.x = (int)floor(x + r);
+	min.y = (int)floor(y - r);
+	max.y = (int)floor(y + r);
 	cur_cell.y = min.y;
 	while (cur_cell.y <= max.y)
 	{
 		cur_cell.x = min.x;
 		while (cur_cell.x <= max.x)
 		{
-			if (map_cell_is_wall(cube, cur_cell.x, cur_cell.y) &&
-				circle_hits_tile(x, y, cube->player.collision_radius, &cur_cell))
-			{
+			if (map_cell_is_wall(cube, cur_cell.x, cur_cell.y)
+				&& circle_hits_tile(x, y, r, &cur_cell))
 				return (true);
-			}
 			++cur_cell.x;
 		}
 		++cur_cell.y;
@@ -67,7 +67,7 @@ int	circle_hits_tile(double px, double py, double r, t_coord *tile)
 
 /* Clamps a double value between the given minimum
  * and maximum bounds */
-double clamp_double(double val, double min, double max)
+double	clamp_double(double val, double min, double max)
 {
 	if (val < min)
 		return (min);

@@ -6,7 +6,7 @@
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 20:28:28 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/08 20:28:36 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/27 19:05:40 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,14 +62,26 @@ void	draw_girdling_rect(mlx_image_t *img, t_line *line,
 	int offset_x, int offset_y)
 {
 	t_polygon	rect;
+	t_coord		edje1;
+	t_coord		edje2;
+	t_coord		edje3;
+	t_coord		edje4;
 
 	if (!polygon_init(&rect, 4))
 		return ;
 	rect.color = line->color;
-	rect.vertices[0] = (t_coord){ line->p0.x + offset_x, line->p0.y + offset_y };
-	rect.vertices[1] = (t_coord){ line->p1.x + offset_x, line->p1.y + offset_y };
-	rect.vertices[2] = (t_coord){ line->p1.x - offset_x, line->p1.y - offset_y };
-	rect.vertices[3] = (t_coord){ line->p0.x - offset_x, line->p0.y - offset_y };
+	edje1.x = line->p0.x + offset_x;
+	edje1.y = line->p0.y + offset_y;
+	rect.vertices[0] = edje1;
+	edje2.x = line->p1.x + offset_x;
+	edje2.y = line->p1.y + offset_y;
+	rect.vertices[1] = edje2;
+	edje3.x = line->p1.x - offset_x;
+	edje3.y = line->p1.y - offset_y;
+	rect.vertices[2] = edje3;
+	edje4.x = line->p0.x - offset_x;
+	edje4.y = line->p0.y - offset_y;
+	rect.vertices[3] = edje4;
 	polygon_fill(img, &rect);
 	polygon_draw(img, &rect);
 	polygon_free(&rect);
@@ -117,5 +129,5 @@ bool	edge_crosses_y(t_coord a, t_coord b, int y)
  * t=tPmVaatPcz9EXQV9-0 */
 double	edge_x_at_y(t_coord a, t_coord b, int y)
 {
-	return (a.x + (double)(y - a.y) * (b.x - a.x) / (b.y - a.y));
+	return ((a.x + (double)(y - a.y)) * ((b.x - a.x) / (b.y - a.y)));
 }

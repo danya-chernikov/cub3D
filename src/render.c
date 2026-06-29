@@ -6,7 +6,7 @@
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/20 20:47:21 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/27 12:46:56 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/27 19:38:54 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	render_init_tex(t_cube *cube, t_ray *ray, t_wall_column *col,
 	sample->tex_x = render_tex_x(cube, ray, col->dist, sample->tex);
 	sample->tex_step = (double)sample->tex->height / col->line_height;
 	sample->tex_pos = (col->draw_start - cube->gfx.win_height / 2
-		+ col->line_height / 2) * sample->tex_step;
+			+ col->line_height / 2) * sample->tex_step;
 }
 
 /* Draws one textured vertical wall column. For each screen y

@@ -6,7 +6,7 @@
 #    By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/06/08 20:13:09 by dchernik          #+#    #+#              #
-#    Updated: 2026/06/27 12:53:11 by dchernik         ###   ########.fr        #
+#    Updated: 2026/06/29 03:05:25 by dchernik         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,20 +17,18 @@ CC=cc
 NAME=cub3D
 
 # If 0, the debugging is turned off
-DEBUG_LVL=1
+DEBUG_LVL=0
 
 # Library paths
 # The `libft` library has to be built
 LIBFT_PATH=libft/
 LIBFT_A=$(LIBFT_PATH)/libft.a
 
-# The `vector` library has to be built
-VECTOR_PATH=vector/
-VECTOR_A=$(VECTOR_PATH)/libvector.a
-
-MLX_DIR=mlx42/
+MLX_DIR=mlx42
 MLX_BUILD_DIR=$(MLX_DIR)/build
 MLX_A=$(MLX_BUILD_DIR)/libmlx42.a
+MLX_HDR=$(MLX_DIR)/include/MLX42/MLX42.h
+MLX_URL=https://github.com/42-Fundacion-Telefonica/MLX42.git
 
 SRC_PATH=src/
 OBJ_PATH=obj/
@@ -63,52 +61,52 @@ PROJECT_HDRS=$(SRC_PATH)/cube.h \
 			 $(SRC_PATH)/render.h
 
 LIB_HDRS=$(SRC_PATH)/libft.h \
-		 $(SRC_PATH)/vector.h \
-		 $(SRC_PATH)/MLX42.h
+		 $(MLX_HDR)
 
 HDRS=$(PROJECT_HDRS) $(LIB_HDRS)
 
 
 # C compiler options
-CFLAGS=-Wall -Werror -Wextra -O0 -g3
+CFLAGS:=-Wall -Werror -Wextra
 
 ifeq ($(DEBUG_LVL),1)
-CFLAGS=-Wall -Wextra -Werror -O0 -g3 -DDEBUG=1
-MLX_DEBUG=-DDEBUG=1
+CFLAGS+=-O0 -g3 -DDEBUG=1
+MLX_DEBUG:=-DDEBUG=1
 else
-CFLAGS=-Wall -Wextra -Werror -DDEBUG=0
-MLX_DEBUG=-DDEBUG=0
+CFLAGS+=-O2 -DDEBUG=0
+MLX_DEBUG:=-DDEBUG=0
 endif
 
 INCLUDES=-I$(LIBFT_PATH) \
-		 -I$(VECTOR_PATH) \
 		 -I$(MLX_DIR)/include \
 		 -I$(MLX_DIR)/include/MLX42
 
 LIBFLAGS=-ldl -lglfw -pthread -lm -lGL
 
-
 all: $(NAME)
 
-$(NAME): $(OBJS) $(LIBFT_A) $(VECTOR_A) $(MLX_A)
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT_A) $(VECTOR_A) $(MLX_A) \
+$(NAME): $(OBJS) $(LIBFT_A) $(MLX_A)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT_A) $(MLX_A) \
 	$(LIBFLAGS) -o $(NAME)
 
 # Here we build libraries
 $(LIBFT_A):
 	$(MAKE) -C $(LIBFT_PATH) bonus
 
-$(VECTOR_A):
-	$(MAKE) -C $(VECTOR_PATH)
+$(OBJ_PATH):
+	mkdir -p $(OBJ_PATH)
 
-$(MLX_A):
+$(OBJS): | $(OBJ_PATH)
+
+$(MLX_DIR):
+	git clone --depth 1 $(MLX_URL) $(MLX_DIR)
+
+$(MLX_HDR): | $(MLX_DIR)
+	@test -f $(MLX_HDR)
+
+$(MLX_A): | $(MLX_DIR)
 	cmake -B $(MLX_BUILD_DIR) $(MLX_DEBUG) $(MLX_DIR)
 	cmake --build $(MLX_BUILD_DIR) -j$(shell nproc --all)
-
-# Yeah.. it's redundant to specify libft.h, vector.h and MLX42.h
-# as dependencies for each source file. However, since these are
-# considered our libraries, we may want to use functions from them
-# at any moment, so why not keep them just in case
 
 # Here we build all source files manually
 $(OBJ_PATH)/main.o: $(SRC_PATH)/main.c $(HDRS)
@@ -278,15 +276,14 @@ $(OBJ_PATH)/graphx_circle.o: $(SRC_PATH)/graphx_circle.c $(HDRS)
 
 # Other rules we obliged to have
 clean:
-	rm -rf $(OBJS)
+	rm -rf $(OBJ_PATH)
 	$(MAKE) -C $(LIBFT_PATH) clean
-	$(MAKE) -C $(VECTOR_PATH) clean
+	rm -rf $(MLX_BUILD_DIR)
 
 fclean: clean
 	rm -rf $(NAME)
 	$(MAKE) -C $(LIBFT_PATH) fclean
-	$(MAKE) -C $(VECTOR_PATH) fclean
-	rm -rf $(MLX_BUILD_DIR)
+	rm -rf $(MLX_DIR)
 
 re: fclean all
 

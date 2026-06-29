@@ -6,7 +6,7 @@
 /*   By: adeestev <adeestev@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/21 15:19:43 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/10 12:33:51 by adeestev         ###   ########.fr       */
+/*   Updated: 2026/06/29 03:21:31 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,50 +14,32 @@
 #include "libft.h"
 
 #include <errno.h>
-#include <string.h> /* for strerror() */
 #include <unistd.h> /* for write() */
 
-/* Prints a system error message in the
- * terminal alongside a user-defined error
- * description stored in `msg` */
-void	print_sys_error(const char *msg)
-{
-	int		saved_errno;
-	char	buf[ERR_BUF_SIZE];
-	char	*err;
+static int	write_all(int fd, const char *s, size_t len);
 
-	if (!msg)
-		return ;
-	saved_errno = errno;
-	err = strerror(saved_errno);
-	ft_strlcpy(buf, "Error: ", ERR_BUF_SIZE);
-	ft_strlcat(buf, msg, ERR_BUF_SIZE);
-	ft_strlcat(buf, ": ", ERR_BUF_SIZE);
-	ft_strlcat(buf, err, ERR_BUF_SIZE);
-	ft_strlcat(buf, "\n", ERR_BUF_SIZE);
-	write(STDERR_FILENO, buf, ft_strlen(buf));
-}
-
-/* Prints user-defined warning message
- * `msg` in the terminal */
-void	print_warning(const char *msg)
-{
-	char	buf[WARN_BUF_SIZE];
-
-	if (!msg)
-		return ;
-	ft_strlcpy(buf, "Warning: ", WARN_BUF_SIZE);
-	ft_strlcat(buf, msg, WARN_BUF_SIZE);
-	ft_strlcat(buf, "\n", WARN_BUF_SIZE);
-	write(STDERR_FILENO, buf, ft_strlen(buf));
-}
-
-// Required by subject
 void	print_error(const char *msg)
 {
 	if (!msg)
 		return ;
-	write(STDERR_FILENO, "Error\n", 6);
-	write(STDERR_FILENO, msg, ft_strlen(msg));
-	write(STDERR_FILENO, "\n", 1);
+	if (!write_all(STDERR_FILENO, "Error\n", 6))
+		return ;
+	if (!write_all(STDERR_FILENO, msg, ft_strlen(msg)))
+		return ;
+	write_all(STDERR_FILENO, "\n", 1);
+}
+
+static int	write_all(int fd, const char *s, size_t len)
+{
+	ssize_t	written;
+
+	while (len > 0)
+	{
+		written = write(fd, s, len);
+		if (written < 0)
+			return (COMMON_FAILURE);
+		s += written;
+		len -= written;
+	}
+	return (COMMON_SUCCESS);
 }

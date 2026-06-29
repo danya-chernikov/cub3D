@@ -6,11 +6,15 @@
 /*   By: adeestev <adeestev@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/16 14:52:43 by adeestev          #+#    #+#             */
-/*   Updated: 2026/06/10 12:19:16 by adeestev         ###   ########.fr       */
+/*   Updated: 2026/06/29 03:29:36 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
+
+/* Adérito's scheme showing how the parser works:
+ * https://www.figma.com/design/MOGITOdwaCYQ11DAqgljlT/cub3D?
+ * node-id=305-3&t=ayWHjOdfEbdaKrp7-0*/
 
 /*
 validates that file has the correct extension

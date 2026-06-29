@@ -6,7 +6,7 @@
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 13:56:40 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/21 02:44:10 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/27 19:34:20 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,11 @@ void	minimap_draw_fov(mlx_image_t *img, t_cube *cube)
 	t_coord	left_ray;
 	t_coord	right_ray;
 	double	half_fov;
+	double	player_fov_rad;
 
 	center = minimap_center(cube);
-	half_fov = PLAYER_FOV_RAD / 2.0;
+	player_fov_rad = PLAYER_FOV_DEG * PI / 180.0;
+	half_fov = player_fov_rad / 2.0;
 	left_ray = minimap_ray_end(cube, cube->player.angle - half_fov);
 	right_ray = minimap_ray_end(cube, cube->player.angle + half_fov);
 	draw_line(img, center, left_ray, COLOR_YELLOW);
@@ -61,7 +63,7 @@ t_coord	minimap_center(t_cube *cube)
  * closest minimap edge in the ray's direction. That
  * gives us the first border point hit by the ray, so
  * the drawn line stays inside the minimap */
-t_coord	minimap_ray_end(t_cube * cube, double angle)
+t_coord	minimap_ray_end(t_cube *cube, double angle)
 {
 	t_coord		center;
 	t_coord		end;

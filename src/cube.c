@@ -6,7 +6,7 @@
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/21 15:19:23 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/26 12:03:19 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/29 03:49:24 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,6 @@ t_cube	*parser_init(int argc, char **argv)
 		free_cube(cube);
 		return (NULL);
 	}
-#if DEBUG_LVL == 1
-	printf("Map %s is valid\n", argv[1]);
-#endif
 	return (cube);
 }
 
@@ -54,7 +51,7 @@ int	graphx_init(t_cube *cube)
 	if (!cube->gfx.mlx)
 		return (COMMON_FAILURE);
 	cube->gfx.img = mlx_new_image(cube->gfx.mlx,
-		cube->gfx.win_width, cube->gfx.win_height);
+			cube->gfx.win_width, cube->gfx.win_height);
 	if (!cube->gfx.img)
 		return (COMMON_FAILURE);
 	if (mlx_image_to_window(cube->gfx.mlx, cube->gfx.img, 0, 0) < 0)
@@ -73,6 +70,8 @@ void	game_loop(void *param)
 	t_cube	*cube;
 
 	cube = param;
+	if (cube->fatal_error)
+		return ;
 	game_update_delta_time(cube);
 	handle_window_input(cube);
 	player_handle_input(cube);

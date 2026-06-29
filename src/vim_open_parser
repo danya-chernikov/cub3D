@@ -1,1 +1,0 @@
-parser.h parser.c parse_map.c parse_validation.c parse_color.c parse_elements.c parser_utils.c
