@@ -6,7 +6,7 @@
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 19:11:49 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/29 03:57:50 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/29 04:09:26 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
 # define BR_SY				1
 
 /* Window parameters */
-# define WIN_WIDTH			1024
-# define WIN_HEIGHT			768
+# define WIN_WIDTH			1920
+# define WIN_HEIGHT			1080
 
 /* Basic colors */
 # define COLOR_WHITE		0x00000000FF
