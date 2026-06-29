@@ -6,7 +6,7 @@
 /*   By: adeestev <adeestev@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/16 14:51:23 by adeestev          #+#    #+#             */
-/*   Updated: 2026/06/10 12:20:20 by adeestev         ###   ########.fr       */
+/*   Updated: 2026/06/29 03:55:13 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ int		validate_map(t_cube *cube, t_parse_data *data);
 void	free_parse_data(t_parse_data *data);
 void	free_cube(t_cube *cube);
 char	*skip_spaces(char *str);
+void	free_texture(t_texture *tex);
 int		is_player(char c);
 
 #endif

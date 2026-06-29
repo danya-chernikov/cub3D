@@ -6,7 +6,7 @@
 /*   By: adeestev <adeestev@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/17 15:06:32 by adeestev          #+#    #+#             */
-/*   Updated: 2026/06/26 16:55:17 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/29 03:54:46 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	free_parse_data(t_parse_data *data)
 /*
 frees the allocated string paths inside the t_texture structure
 */
-static void	free_texture(t_texture *tex)
+void	free_texture(t_texture *tex)
 {
 	if (!tex)
 		return ;

@@ -6,7 +6,7 @@
 /*   By: adeestev <adeestev@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/21 15:19:30 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/27 15:42:18 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/29 03:47:30 by dchernik         ###   ########.fr       */
 /*   Updated: 2026/06/05 20:24:05 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -44,6 +44,7 @@ typedef struct s_cube
 	t_graph_data	gfx;
 	double			delta_time;
 	double			last_time;
+	bool			fatal_error;
 }	t_cube;
 
 /* Contains file paths to

@@ -6,7 +6,7 @@
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/21 15:19:23 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/27 15:30:38 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/29 03:49:24 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ void	game_loop(void *param)
 	t_cube	*cube;
 
 	cube = param;
+	if (cube->fatal_error)
+		return ;
 	game_update_delta_time(cube);
 	handle_window_input(cube);
 	player_handle_input(cube);

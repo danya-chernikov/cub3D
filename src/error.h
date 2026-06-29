@@ -6,7 +6,7 @@
 /*   By: adeestev <adeestev@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/21 15:19:38 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/28 15:05:01 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/29 03:21:32 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,5 @@
 
 /* error.c */
 void	print_error(const char *msg);
-int		write_all(int fd, const char *s, size_t len);
 
 #endif

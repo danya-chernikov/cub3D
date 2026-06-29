@@ -6,7 +6,7 @@
 /*   By: dchernik <dchernik@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 15:49:53 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/08 16:20:29 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/29 03:47:46 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ static size_t	partition(double *arr, int low, int high);
 void	graphx_error(void)
 {
 	fprintf(stderr, "%s", mlx_strerror(mlx_errno));
-	exit(EXIT_FAILURE);
 }
 
 void	put_pixel_safe(mlx_image_t *img, int x, int y, uint32_t color)

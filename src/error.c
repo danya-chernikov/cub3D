@@ -6,7 +6,7 @@
 /*   By: adeestev <adeestev@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/21 15:19:43 by dchernik          #+#    #+#             */
-/*   Updated: 2026/06/28 15:25:28 by dchernik         ###   ########.fr       */
+/*   Updated: 2026/06/29 03:21:31 by dchernik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 #include <errno.h>
 #include <unistd.h> /* for write() */
+
+static int	write_all(int fd, const char *s, size_t len);
 
 void	print_error(const char *msg)
 {
@@ -27,7 +29,7 @@ void	print_error(const char *msg)
 	write_all(STDERR_FILENO, "\n", 1);
 }
 
-int	write_all(int fd, const char *s, size_t len)
+static int	write_all(int fd, const char *s, size_t len)
 {
 	ssize_t	written;
 

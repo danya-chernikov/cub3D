@@ -1,1 +1,0 @@
-main.c cube.c texture.c cube_time.c cube.h render.c render_texture.c raycast_setters.c raycast.c render.h player.c player_input.c player_collision.c player_movement.c player.h minimap.h minimap.c minimap_walls.c minimap_fov.c minimap_utils.c graphx_window.c
